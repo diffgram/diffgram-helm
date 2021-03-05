@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: diffgram-default
+  name: diffgram-default
+  namespace: default
+spec:
+  replicas: {{ .Values.defaultService.numReplicas }}
+  selector:
+    matchLabels:
+      app: diffgram-default
+  template:
+    metadata:
+      labels:
+        app: diffgram-default
+    spec:
+      imagePullSecrets:
+      - name: diffgramsecret
+      volumes:
+      - name: service-account-credentials-volume
+        secret:
+          secretName: gcp-service-account-credentials
+          items:
+          - key: sa_json
+            path: sa_credentials.json
+      initContainers:
+      - name: check-db-ready
+        image: postgres:9.6.5
+        {{ if eq .Values.dbSettings.dbProvider "local"}}
+        command: ['sh', '-c',
+                  'until pg_isready -h diffgram-postgres -p 5432;
+          do echo waiting for database; sleep 2; done;']
+        {{ end }}
+        {{ if eq .Values.dbSettings.dbProvider "rds"}}
+        command: ['sh', '-c', 'until pg_isready -h postgres-rds-service -p 5432; do echo waiting for database; sleep 2; done;']
+        {{ end }}
+      - name: run-migrations
+        imagePullPolicy: Always
+        image: gcr.io/diffgram-001/default:{{ .Values.diffgramVersion }}
+        envFrom:
+        - configMapRef:
+            name: diffgram-default-configmap
+        - secretRef:
+            name: diffgram-default-secrets
+        command: ["sh","-c", "cd shared; export PYTHONPATH=/app; pip install sqlalchemy-utils==0.36.6;python /app/testing_and_other/create_database.py; alembic upgrade head"]
+      containers:
+      - image: gcr.io/diffgram-001/default:{{ .Values.diffgramVersion }}
+        imagePullPolicy: Always
+        name: diffgram-default
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: service-account-credentials-volume
+          mountPath: /etc/gcp
+          readOnly: true
+        envFrom:
+        - configMapRef:
+            name: diffgram-default-configmap
+        - secretRef:
+            name: diffgram-default-secrets
+        resources:
+          requests:
+            cpu: {{ .Values.defaultService.requests.cpu }}
+            memory: {{ .Values.defaultService.requests.memory }}
+          limits:
+            cpu: {{ .Values.defaultService.limits.cpu }}
+            memory: {{ .Values.defaultService.limits.memory }}

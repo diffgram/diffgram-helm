@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: frontend
+  name: frontend
+  namespace: default
+spec:
+  replicas: {{ .Values.frontendService.numReplicas }}
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      imagePullSecrets:
+      - name: diffgramsecret
+      containers:
+      - image: gcr.io/diffgram-001/frontend:{{ .Values.diffgramVersion }}
+        imagePullPolicy: Always
+        name: frontend
+        resources:
+          requests:
+            cpu: {{ .Values.frontendService.requests.cpu }}
+            memory: {{ .Values.frontendService.requests.memory }}
+          limits:
+            cpu: {{ .Values.frontendService.limits.cpu }}
+            memory: {{ .Values.frontendService.limits.memory }}

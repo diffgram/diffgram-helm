@@ -1,0 +1,39 @@
+{{ if eq .Values.dbSettings.dbProvider "local"}}
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "postgres"
+  namespace: "default"
+  labels:
+    app: "postgres"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "postgres"
+  template:
+    metadata:
+      labels:
+        app: "postgres"
+    spec:
+      containers:
+      - name: "postgres"
+        image: "postgres:9.6.2"
+        env:
+        - name: "POSTGRES_DB"
+          value: {{ .Values.dbSettings.dbName }}
+        - name: "POSTGRES_USER"
+          value: {{ .Values.dbSettings.dbUser }}
+        - name: "POSTGRES_PASSWORD"
+          value: {{ .Values.dbSettings.dbPassword }}
+        ports:
+          - containerPort: 5432
+            name: postgres
+        volumeMounts:
+          - name: postgres-storage
+            mountPath: /var/lib/postgresql/db-data
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim
+{{ end }}

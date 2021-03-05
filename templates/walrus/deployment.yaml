@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: diffgram-walrus
+  name: diffgram-walrus
+  namespace: default
+spec:
+  replicas: {{ .Values.walrusService.numReplicas }}
+  selector:
+    matchLabels:
+      app: diffgram-walrus
+  template:
+    metadata:
+      labels:
+        app: diffgram-walrus
+    spec:
+      imagePullSecrets:
+      - name: diffgramsecret
+      volumes:
+      - name: service-account-credentials-volume
+        secret:
+          secretName: gcp-service-account-credentials
+          items:
+          - key: sa_json
+            path: sa_credentials.json
+      - name: empty-dir
+        emptyDir: {}
+      initContainers:
+      - name: check-db-ready
+        image: postgres:9.6.5
+        {{ if eq .Values.dbSettings.dbProvider "local"}}
+        command: ['sh', '-c',
+                  'until pg_isready -h diffgram-postgres -p 5432;
+          do echo waiting for database; sleep 2; done;']
+        {{ end }}
+        {{ if eq .Values.dbSettings.dbProvider "rds"}}
+        command: ['sh', '-c',
+                  'until pg_isready -h postgres-rds-service -p 5432;
+          do echo waiting for database; sleep 2; done;']
+        {{ end }}
+      containers:
+      - image: gcr.io/diffgram-001/walrus:{{ .Values.diffgramVersion }}
+        imagePullPolicy: Always
+        name: diffgram-walrus
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: service-account-credentials-volume
+          mountPath: /etc/gcp
+          readOnly: true
+        - name: empty-dir
+          mountPath: /
+
+        envFrom:
+        - configMapRef:
+            name: diffgram-walrus-configmap
+        - secretRef:
+            name: diffgram-walrus-secrets
+        resources:
+          requests:
+            cpu: {{ .Values.walrusService.requests.cpu }}
+            memory: {{ .Values.walrusService.requests.memory }}
+          limits:
+            cpu: {{ .Values.walrusService.limits.cpu }}
+            memory: {{ .Values.walrusService.limits.memory }}

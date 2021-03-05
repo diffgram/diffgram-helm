@@ -1,0 +1,50 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: diffgram-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    cert-manager.io/issuer: "letsencrypt-prod"
+#    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+#    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    # Limit uploads to 8TB
+    nginx.ingress.kubernetes.io/proxy-body-size: 800000m
+spec:
+  tls:
+    - secretName: diffgram-cert-tls
+      hosts:
+        - {{ .Values.diffgramDomain }}
+  rules:
+  - host: {{ .Values.diffgramDomain }}
+    http:
+      paths:
+      # NOTE: this one should come after all other routes. To avoid hijacking requests.
+      - path: /api/walrus(/|$)(.*)
+        backend:
+          serviceName: diffgram-walrus
+          servicePort: 8080
+      - path: /api(/|$)(.*)
+        backend:
+          serviceName: diffgram-default
+          servicePort: 8080
+      - path: /(.*)
+        backend:
+          serviceName: frontend
+          servicePort: 8080
+  - http:
+      paths:
+      # NOTE: this one should come after all other routes. To avoid hijacking requests.
+      - path: /api/walrus(/|$)(.*)
+        backend:
+          serviceName: diffgram-walrus
+          servicePort: 8080
+      - path: /api(/|$)(.*)
+        backend:
+          serviceName: diffgram-default
+          servicePort: 8080
+      - path: /(.*)
+        backend:
+          serviceName: frontend
+          servicePort: 8080
