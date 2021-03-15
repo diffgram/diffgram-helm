@@ -35,17 +35,21 @@ spec:
         {{ if eq .Values.dbSettings.dbProvider "rds"}}
         command: ['sh', '-c', 'until pg_isready -h postgres-rds-service -p 5432; do echo waiting for database; sleep 2; done;']
         {{ end }}
+        {{ if eq .Values.dbSettings.dbProvider "azure"}}
+        command: ['sh', '-c', 'until pg_isready -h postgres-azure-service -p 5432; do echo waiting for database; sleep 2; done;']
+        {{ end }}
       - name: run-migrations
         imagePullPolicy: Always
-        image: gcr.io/diffgram-001/default:{{ .Values.diffgramVersion }}
+        image: gcr.io/diffgram-enterprise/default:{{ .Values.diffgramVersion }}
         envFrom:
         - configMapRef:
             name: diffgram-default-configmap
         - secretRef:
             name: diffgram-default-secrets
         command: ["sh","-c", "cd shared; export PYTHONPATH=/app; pip install sqlalchemy-utils==0.36.6;python /app/testing_and_other/create_database.py; alembic upgrade head"]
+
       containers:
-      - image: gcr.io/diffgram-001/default:{{ .Values.diffgramVersion }}
+      - image: gcr.io/diffgram-enterprise/default:{{ .Values.diffgramVersion }}
         imagePullPolicy: Always
         name: diffgram-default
         ports:

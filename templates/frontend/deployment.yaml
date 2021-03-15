@@ -18,7 +18,7 @@ spec:
       imagePullSecrets:
       - name: diffgramsecret
       containers:
-      - image: gcr.io/diffgram-001/frontend:{{ .Values.diffgramVersion }}
+      - image: gcr.io/diffgram-enterprise/frontend:{{ .Values.diffgramVersion }}
         imagePullPolicy: Always
         name: frontend
         resources:

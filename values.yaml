@@ -18,6 +18,7 @@ dbSettings:
   # - gcsql: use an ExternalService with a Google Cloud SQL instance. If you set this you need to provide the gcSqlEndpoint field.
   dbProvider: local
   rdsEndpoint: none
+  azureSqlEndpoint: none
   gcsqlEndpoint: none
   dbUser: postgres
   dbName: postgres

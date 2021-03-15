@@ -1,3 +1,5 @@
 
 .idea/
 .charts/
+values_testing.yaml
+values_testing_*

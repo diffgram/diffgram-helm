@@ -39,8 +39,13 @@ spec:
                   'until pg_isready -h postgres-rds-service -p 5432;
           do echo waiting for database; sleep 2; done;']
         {{ end }}
+        {{ if eq .Values.dbSettings.dbProvider "azure"}}
+        command: ['sh', '-c',
+                  'until pg_isready -h postgres-azure-service -p 5432;
+          do echo waiting for database; sleep 2; done;']
+        {{ end }}
       containers:
-      - image: gcr.io/diffgram-001/walrus:{{ .Values.diffgramVersion }}
+      - image: gcr.io/diffgram-enterprise/walrus:{{ .Values.diffgramVersion }}
         imagePullPolicy: Always
         name: diffgram-walrus
         ports:
@@ -49,8 +54,6 @@ spec:
         - name: service-account-credentials-volume
           mountPath: /etc/gcp
           readOnly: true
-        - name: empty-dir
-          mountPath: /
 
         envFrom:
         - configMapRef:
