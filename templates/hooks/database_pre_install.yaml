@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{ .Release.Name }}-pre-upgrade"
+  name: "{{ .Release.Name }}-pre-install"
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
@@ -10,7 +10,7 @@ metadata:
   annotations:
     # This is what defines this resource as a hook. Without this line, the
     # job is considered part of the release.
-    "helm.sh/hook": pre-upgrade
+    "helm.sh/hook": pre-install
     "helm.sh/hook-weight": "2"
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
 spec:
@@ -24,7 +24,7 @@ spec:
     spec:
       restartPolicy: Never
       imagePullSecrets:
-      - name: diffgramsecret
+      - name: db-migrations-pull-secret
       volumes:
       - name: service-account-credentials-volume-hook
         secret:
@@ -46,4 +46,4 @@ spec:
         - secretRef:
             name:  db-migrations-secret
         # The actual migrations command
-        command: ["sh","-c", "cd shared; export PYTHONPATH=/app; pip install sqlalchemy-utils==0.36.6;python /app/testing_and_other/create_database.py;"]
+        command: ["sh","-c", "cd shared; export PYTHONPATH=/app; pip install sqlalchemy-utils==0.36.6;python /app/testing_and_other/create_database.py; alembic upgrade head"]

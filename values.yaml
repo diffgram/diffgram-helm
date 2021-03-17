@@ -38,6 +38,8 @@ diffgramSecrets:
   INTER_SERVICE_SECRET: provided_by_diffgram_team
   # Use diffgram-postgres, postgres-rds-service depending on which DB service you set on dbSettings
   USER_PASSWORDS_SECRET: provided_by_diffgram_team
+  # The service account JSON for GCP Static Storage Encoded in Base64.
+  SERVICE_ACCOUNT_JSON_B64: put_your_gcp_secret_in_base_64_here
 
 diffgramSettings:
   USERDOMAIN: kubernetes
@@ -48,8 +50,8 @@ diffgramSettings:
   CLOUD_STORAGE_BUCKET: diffgram-testing
   ML__CLOUD_STORAGE_BUCKET: diffgram-testing
   GOOGLE_APPLICATION_CREDENTIALS: /etc/gcp/sa_credentials.json # Check the volume in deployment.yaml and service_account_secret.yaml
-  # The service account JSON for GCP Static Storage Encoded in Base64.
-  SERVICE_ACCOUNT_JSON_B64: put_your_gcp_secret_in_base_64_here
+
+  SERVICE_ACCOUNT: sa_credentials.json
 
 imagePullCredentials:
   # The service account with permissions to pull from the GCR Repository. [Should be Provided by Diffgram Team.]

@@ -13,3 +13,4 @@ data:
   ML__CLOUD_STORAGE_BUCKET:  {{ .Values.diffgramSettings.ML__CLOUD_STORAGE_BUCKET }}
   PYTHONPATH: /app
   URL_BASE: {{ .Values.diffgramDomain }}
+  SERVICE_ACCOUNT_FULL_PATH: {{ .Values.diffgramSettings.SERVICE_ACCOUNT_FULL_PATH }}
