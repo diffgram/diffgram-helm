@@ -15,8 +15,10 @@ spec:
       labels:
         app: diffgram-default
     spec:
+      {{ if eq .Values.diffgramEdition "enterprise"}}
       imagePullSecrets:
       - name: diffgramsecret
+      {{ end }}
       volumes:
       - name: service-account-credentials-volume
         secret:
@@ -39,7 +41,12 @@ spec:
         command: ['sh', '-c', 'until pg_isready -h postgres-azure-service -p 5432; do echo waiting for database; sleep 2; done;']
         {{ end }}
       containers:
+      {{ if eq .Values.diffgramEdition "enterprise"}}
       - image: gcr.io/diffgram-enterprise/default:{{ .Values.diffgramVersion }}
+      {{ end }}
+      {{ if eq .Values.diffgramEdition "opencore"}}
+      - image: gcr.io/diffgram-open-core/default:{{ .Values.diffgramVersion }}
+      {{ end }}
         imagePullPolicy: Always
         name: diffgram-default
         ports:

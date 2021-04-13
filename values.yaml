@@ -5,6 +5,10 @@
 # The Diffgram Version. Whenever a new update arrives, this will be changed.
 diffgramVersion: latest
 
+# Either 'opencore' or 'enterprise'. Please note that selecting 'enterprise'
+# requires that you also set imagePullCredentials.gcrCredentials.
+diffgramEdition: opencore
+
 # Set this to your public domain where you want diffgram to be.
 diffgramDomain: example.com
 
