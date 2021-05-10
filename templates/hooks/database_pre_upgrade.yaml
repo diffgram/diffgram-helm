@@ -23,8 +23,10 @@ spec:
         helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     spec:
       restartPolicy: Never
+      {{ if eq .Values.diffgramEdition "enterprise"}}
       imagePullSecrets:
       - name: diffgramsecret
+      {{ end }}
       volumes:
       - name: service-account-credentials-volume-hook
         secret:
@@ -33,7 +35,12 @@ spec:
           - key: sa_json
             path: sa_credentials.json
       containers:
+      {{ if eq .Values.diffgramEdition "enterprise"}}
       - image: gcr.io/diffgram-enterprise/default:{{ .Values.diffgramVersion }}
+      {{ end }}
+      {{ if eq .Values.diffgramEdition "opencore"}}
+      - image: gcr.io/diffgram-open-core/default:{{ .Values.diffgramVersion }}
+      {{ end }}
         imagePullPolicy: Always
         name: pre-upgrade-alembic-hook
         volumeMounts:
@@ -46,4 +53,4 @@ spec:
         - secretRef:
             name:  db-migrations-secret
         # The actual migrations command
-        command: ["sh","-c", "cd shared; export PYTHONPATH=/app; pip install sqlalchemy-utils==0.36.6;python /app/testing_and_other/create_database.py;"]
+        command: ["sh","-c", "cd shared; export PYTHONPATH=/app; pip install sqlalchemy-utils==0.36.6;python /app/play_and_scripts/scripts/create_database.py;"]
