@@ -2,9 +2,16 @@
 Helm Chart for DIffgram
 
 # Pre-requisites
-### Setting Up the Docker Registry Key:
+### Opencore or Enterprise
 
-To install the helm chart you will need to receive a GCR key with the permissions from
+Make sure you set the value of  `diffgramEdition` in the `values.yaml` to either `opencore`
+or `enterprise`.
+
+If you set the `diffgramEdition` to `enterprise` you will have to provide the GCR credentials 
+Key (Provided by the Diffgram Team). And set the value on `imagePullCredentials.gcrCredentials` value inside the `values.yaml` file.
+### Setting Up the Docker Registry Key (Enterprise Only):
+
+To install the helm chart with the Enterprise Edition of Diffgram you will need to receive a GCR key with the permissions from
 the Diffgram team to fetch our images.
 
 Please Contact us if you want  to get one here:  https://diffgram.com/contact

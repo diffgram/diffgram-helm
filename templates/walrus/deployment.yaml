@@ -15,8 +15,10 @@ spec:
       labels:
         app: diffgram-walrus
     spec:
+      {{ if eq .Values.diffgramEdition "enterprise"}}
       imagePullSecrets:
       - name: diffgramsecret
+      {{ end }}
       volumes:
       - name: service-account-credentials-volume
         secret:
@@ -45,7 +47,12 @@ spec:
           do echo waiting for database; sleep 2; done;']
         {{ end }}
       containers:
+      {{ if eq .Values.diffgramEdition "enterprise"}}
       - image: gcr.io/diffgram-enterprise/walrus:{{ .Values.diffgramVersion }}
+      {{ end }}
+      {{ if eq .Values.diffgramEdition "opencore"}}
+      - image: gcr.io/diffgram-open-core/walrus:{{ .Values.diffgramVersion }}
+      {{ end }}
         imagePullPolicy: Always
         name: diffgram-walrus
         ports:
