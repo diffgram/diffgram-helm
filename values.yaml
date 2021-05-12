@@ -45,12 +45,15 @@ diffgramSecrets:
   USER_PASSWORDS_SECRET: provided_by_diffgram_team
   # The service account JSON for GCP Static Storage Encoded in Base64.
   SERVICE_ACCOUNT_JSON_B64: put_your_gcp_secret_in_base_64_here
+  DIFFGRAM_AZURE_CONNECTION_STRING: put_your_azure_connection_string_here
 
 diffgramSettings:
   USERDOMAIN: kubernetes
   DIFFGRAM_SYSTEM_MODE: production
   DIFFGRAM_STATIC_STORAGE_PROVIDER: gcp
   DIFFGRAM_S3_BUCKET_NAME: none
+  DIFFGRAM_AZURE_CONTAINER_NAME: none
+  ML__DIFFGRAM_AZURE_CONTAINER_NAME: none
   ML__DIFFGRAM_S3_BUCKET_NAME: diffgram-testing
   CLOUD_STORAGE_BUCKET: diffgram-testing
   ML__CLOUD_STORAGE_BUCKET: diffgram-testing
