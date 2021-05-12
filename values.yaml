@@ -19,6 +19,7 @@ dbSettings:
   # Specify How the DB Service should be created
   # - local: use a Postgres Image and Service (No external service) Recommended only for non-production enviroments.
   # - rds: use an ExternalService with an AWS RDS instance. If you set this you need to provide the rdsEndpoint field.
+  # - azure: use an ExternalService with an Azure Postgres instance. If you set this you need to provide the azureSqlEndpoint field.
   # - gcsql: use an ExternalService with a Google Cloud SQL instance. If you set this you need to provide the gcSqlEndpoint field.
   dbProvider: local
   rdsEndpoint: none
