@@ -10,6 +10,8 @@ diffgramVersion: latest
 diffgramEdition: opencore
 
 # Set this to your public domain where you want diffgram to be.
+# This must be a domain name and not a public IP address.
+# The chart will generate TLS certificates for the provided domain if useCertManager is 'true'
 diffgramDomain: example.com
 
 # Set this to true if you want to use cert manager for TLS certificates generation.
@@ -59,6 +61,9 @@ diffgramSettings:
   ML__CLOUD_STORAGE_BUCKET: diffgram-testing
   GOOGLE_APPLICATION_CREDENTIALS: /etc/gcp/sa_credentials.json # Check the volume in deployment.yaml and service_account_secret.yaml
 
+  # Set this value if you want to use GCP as your storage. Put your json service account encoded in base 64
+  SERVICE_ACCOUNT_JSON_B64: none
+
   SERVICE_ACCOUNT: sa_credentials.json
 
 imagePullCredentials:
@@ -90,8 +95,8 @@ frontendService:
 walrusService:
   numReplicas: 1
   requests:
-    cpu: "16.0"
-    memory: "48G"
+    cpu: "4.0"
+    memory: "16G"
   limits:
-    cpu: "16.0"
-    memory: "48G"
+    cpu: "4.0"
+    memory: "16G"

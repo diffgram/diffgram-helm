@@ -1,4 +1,6 @@
-{{ if eq .Values.dbSettings.dbProvider "local"}}
+{{- $postgresdeploy := (lookup "apps/v1" "Deployment" .Release.Namespace (printf "postgres")) }}
+{{ if eq .Values.dbSettings.dbProvider "local" }}
+{{ if not $postgresdeploy }}
 apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
@@ -6,6 +8,12 @@ metadata:
   namespace: "default"
   labels:
     app: "postgres"
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-3"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
 spec:
   replicas: 1
   selector:
@@ -36,4 +44,5 @@ spec:
         - name: postgres-storage
           persistentVolumeClaim:
             claimName: postgres-pv-claim
+{{ end }}
 {{ end }}
