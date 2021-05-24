@@ -20,12 +20,14 @@ spec:
       - name: diffgramsecret
       {{ end }}
       volumes:
+      {{ if eq .Values.diffgramSettings.DIFFGRAM_STATIC_STORAGE_PROVIDER "gcp"}}
       - name: service-account-credentials-volume
         secret:
           secretName: gcp-service-account-credentials
           items:
           - key: sa_json
             path: sa_credentials.json
+      {{ end }}
       - name: empty-dir
         emptyDir: {}
       initContainers:
@@ -57,11 +59,12 @@ spec:
         name: diffgram-walrus
         ports:
         - containerPort: 8080
+      {{ if eq .Values.diffgramSettings.DIFFGRAM_STATIC_STORAGE_PROVIDER "gcp"}}
         volumeMounts:
         - name: service-account-credentials-volume
           mountPath: /etc/gcp
           readOnly: true
-
+      {{ end }}
         envFrom:
         - configMapRef:
             name: diffgram-walrus-configmap
