@@ -57,6 +57,7 @@ diffgramSettings:
   ML__DIFFGRAM_S3_BUCKET_NAME: diffgram-testing
   CLOUD_STORAGE_BUCKET: diffgram-testing
   ML__CLOUD_STORAGE_BUCKET: diffgram-testing
+  SERVICE_ACCOUNT_FULL_PATH: /etc/gcp/sa_credentials.json
   GOOGLE_APPLICATION_CREDENTIALS: /etc/gcp/sa_credentials.json # Check the volume in deployment.yaml and service_account_secret.yaml
 
   SERVICE_ACCOUNT: sa_credentials.json
