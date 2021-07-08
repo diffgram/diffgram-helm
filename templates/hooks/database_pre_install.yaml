@@ -28,12 +28,17 @@ spec:
       - name: db-migrations-pull-secret
       {{ end }}
       volumes:
+      {{ if eq .Values.diffgramSettings.DIFFGRAM_STATIC_STORAGE_PROVIDER "gcp"}}
       - name: service-account-credentials-volume-hook
         secret:
           secretName: gcp-service-account-credentials-hook
           items:
           - key: sa_json
             path: sa_credentials.json
+      {{ end }}
+      - name: postgres-storage
+        persistentVolumeClaim:
+          claimName: postgres-pv-claim
       containers:
       {{ if eq .Values.diffgramEdition "enterprise"}}
       - image: gcr.io/diffgram-enterprise/default:{{ .Values.diffgramVersion }}
@@ -43,10 +48,12 @@ spec:
       {{ end }}
         imagePullPolicy: Always
         name: pre-upgrade-alembic-hook
+      {{ if eq .Values.diffgramSettings.DIFFGRAM_STATIC_STORAGE_PROVIDER "gcp"}}
         volumeMounts:
-        - name: service-account-credentials-volume-hook
+        - name: service-account-credentials-volume
           mountPath: /etc/gcp
           readOnly: true
+      {{ end }}
         envFrom:
         - configMapRef:
             name: db-migrations-configmap
