@@ -71,6 +71,8 @@ imagePullCredentials:
   # The service account with permissions to pull from the GCR Repository. [Should be Provided by Diffgram Team.]
   gcrCredentials: provided_by_diffgram_team
 
+nodeGroupLabel: null
+
 # The service for API calls.
 # This are minimal defaults. Please feel free to change them as you start having more usage
 defaultService:
