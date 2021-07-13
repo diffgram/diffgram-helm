@@ -8,6 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/enable-cors: "true"
     cert-manager.io/issuer: "letsencrypt-prod"
+    watch-namespace: {{ .Release.Namespace }}
 #    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 #    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
     # Limit uploads to 8TB
