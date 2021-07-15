@@ -4,7 +4,7 @@ metadata:
   labels:
     app: frontend
   name: frontend
-  namespace: default
+  namespace: {{ .Release.Namespace }}
 spec:
   ports:
   - port: 8080

@@ -5,7 +5,7 @@ apiVersion: "apps/v1"
 kind: "Deployment"
 metadata:
   name: "postgres"
-  namespace: "default"
+  namespace: {{ .Release.Namespace }}"
   labels:
     app: "postgres"
   annotations:
@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: "postgres"
-        image: "postgres:9.6.2"
+        image: "postgres:11"
         env:
         - name: "POSTGRES_DB"
           value: {{ .Values.dbSettings.dbName }}
@@ -44,5 +44,9 @@ spec:
         - name: postgres-storage
           persistentVolumeClaim:
             claimName: postgres-pv-claim
+    {{ if eq .Values.nodeGroupLabel }}
+    nodeSelector:
+      poolName: {{ .Values.nodeGroupLabel }}
+    {{ end }}
 {{ end }}
 {{ end }}

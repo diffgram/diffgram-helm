@@ -22,6 +22,10 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name | quote }}
         helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     spec:
+      {{ if .Values.nodeGroupLabel }}
+      nodeSelector:
+        poolName: {{ .Values.nodeGroupLabel }}
+      {{ end }}
       restartPolicy: Never
       {{ if eq .Values.diffgramEdition "enterprise"}}
       imagePullSecrets:
@@ -36,9 +40,11 @@ spec:
           - key: sa_json
             path: sa_credentials.json
       {{ end }}
+      {{ if eq .Values.dbSettings.dbProvider "local"}}
       - name: postgres-storage
         persistentVolumeClaim:
           claimName: postgres-pv-claim
+      {{ end }}
       containers:
       {{ if eq .Values.diffgramEdition "enterprise"}}
       - image: gcr.io/diffgram-enterprise/default:{{ .Values.diffgramVersion }}
@@ -50,7 +56,7 @@ spec:
         name: pre-upgrade-alembic-hook
       {{ if eq .Values.diffgramSettings.DIFFGRAM_STATIC_STORAGE_PROVIDER "gcp"}}
         volumeMounts:
-        - name: service-account-credentials-volume
+        - name: service-account-credentials-volume-hook
           mountPath: /etc/gcp
           readOnly: true
       {{ end }}
