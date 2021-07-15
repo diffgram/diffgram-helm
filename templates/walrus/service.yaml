@@ -4,7 +4,7 @@ metadata:
   labels:
     app: diffgram-walrus
   name: diffgram-walrus
-  namespace: default
+  namespace: {{ .Release.Namespace }}
 spec:
   ports:
   - port: 8080

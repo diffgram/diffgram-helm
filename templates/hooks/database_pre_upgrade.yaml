@@ -27,6 +27,7 @@ spec:
       imagePullSecrets:
       - name: diffgramsecret
       {{ end }}
+      {{ if eq .Values.diffgramSettings.DIFFGRAM_STATIC_STORAGE_PROVIDER "gcp"}}
       volumes:
       - name: service-account-credentials-volume-hook
         secret:
@@ -34,6 +35,7 @@ spec:
           items:
           - key: sa_json
             path: sa_credentials.json
+      {{ end }}
       containers:
       {{ if eq .Values.diffgramEdition "enterprise"}}
       - image: gcr.io/diffgram-enterprise/default:{{ .Values.diffgramVersion }}
@@ -43,10 +45,12 @@ spec:
       {{ end }}
         imagePullPolicy: Always
         name: pre-upgrade-alembic-hook
+       {{ if eq .Values.diffgramSettings.DIFFGRAM_STATIC_STORAGE_PROVIDER "gcp"}}
         volumeMounts:
         - name: service-account-credentials-volume-hook
           mountPath: /etc/gcp
           readOnly: true
+       {{ end }}
         envFrom:
         - configMapRef:
             name: db-migrations-configmap
@@ -54,3 +58,8 @@ spec:
             name:  db-migrations-secret
         # The actual migrations command
         command: ["sh","-c", "cd shared; export PYTHONPATH=/app; pip install sqlalchemy-utils==0.36.6;python /app/play_and_scripts/scripts/create_database.py;"]
+
+      {{ if .Values.nodeGroupLabel }}
+      nodeSelector:
+        poolName: {{ .Values.nodeGroupLabel }}
+      {{ end }}

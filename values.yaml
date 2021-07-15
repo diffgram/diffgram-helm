@@ -71,33 +71,35 @@ imagePullCredentials:
   # The service account with permissions to pull from the GCR Repository. [Should be Provided by Diffgram Team.]
   gcrCredentials: provided_by_diffgram_team
 
+nodeGroupLabel: null
+
 # The service for API calls.
 # This are minimal defaults. Please feel free to change them as you start having more usage
 defaultService:
-  numReplicas: 1
+  numReplicas: 2
   requests:
     cpu: "2.0"
-    memory: "2G"
+    memory: "4G"
   limits:
     cpu: "2.0"
-    memory: "2G"
+    memory: "4G"
 # The service for the UI frontend.
 # This are minimal defaults. Please feel free to change them as you start having more usage
 frontendService:
   numReplicas: 1
   requests:
-    cpu: "1.0"
+    cpu: "2.0"
     memory: "2G"
   limits:
-    cpu: "1.0"
+    cpu: "2.0"
     memory: "2G"
 # The service for video processing. This is where the heavy processing takes place.
 # This are minimal defaults. Please feel free to change them as you start having more usage
 walrusService:
-  numReplicas: 1
+  numReplicas: 2
   requests:
     cpu: "4.0"
-    memory: "16G"
+    memory: "14G"
   limits:
-    cpu: "4.0"
-    memory: "16G"
+    cpu: "8.0"
+    memory: "32G"

@@ -4,7 +4,7 @@ metadata:
   labels:
     app: diffgram-default
   name: diffgram-default
-  namespace: default
+  namespace: {{ .Release.Namespace }}
 spec:
   ports:
   - port: 8080

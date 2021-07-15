@@ -4,7 +4,7 @@ metadata:
   labels:
     app: diffgram-default
   name: diffgram-default
-  namespace: default
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: {{ .Values.defaultService.numReplicas }}
   selector:
@@ -15,6 +15,10 @@ spec:
       labels:
         app: diffgram-default
     spec:
+      {{ if .Values.nodeGroupLabel }}
+      nodeSelector:
+        poolName: {{ .Values.nodeGroupLabel }}
+      {{ end }}
       {{ if eq .Values.diffgramEdition "enterprise"}}
       imagePullSecrets:
       - name: diffgramsecret
@@ -30,7 +34,7 @@ spec:
       {{ end }}
       initContainers:
       - name: check-db-ready
-        image: postgres:9.6.5
+        image: postgres:11
         {{ if eq .Values.dbSettings.dbProvider "local"}}
         command: ['sh', '-c',
                   'until pg_isready -h diffgram-postgres -p 5432;

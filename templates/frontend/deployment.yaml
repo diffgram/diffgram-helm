@@ -4,9 +4,10 @@ metadata:
   labels:
     app: frontend
   name: frontend
-  namespace: default
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: {{ .Values.frontendService.numReplicas }}
+
   selector:
     matchLabels:
       app: frontend
@@ -15,6 +16,10 @@ spec:
       labels:
         app: frontend
     spec:
+      {{ if .Values.nodeGroupLabel }}
+      nodeSelector:
+        poolName: {{ .Values.nodeGroupLabel }}
+      {{ end }}
       {{ if eq .Values.diffgramEdition "enterprise"}}
       imagePullSecrets:
       - name: diffgramsecret
