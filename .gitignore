@@ -5,3 +5,5 @@ values_testing.yaml
 values_testing_*
 values_production*
 
+
+values_staging.yaml
