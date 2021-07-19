@@ -16,6 +16,8 @@ diffgramDomain: example.com
 
 # Set this to true if you want to use cert manager for TLS certificates generation.
 useCertManager: false
+# Use it to activate TLS on the nginx ingress
+useTls: false
 
 dbSettings:
   # Specify How the DB Service should be created
