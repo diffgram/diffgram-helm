@@ -21,7 +21,6 @@ spec:
     - secretName: diffgram-cert-tls
       hosts:
         - {{ .Values.diffgramDomain }}
-        - www.{{ .Values.diffgramDomain }}
   {{ end }}
   rules:
   - host: {{ .Values.diffgramDomain }}
