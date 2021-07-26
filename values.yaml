@@ -44,6 +44,7 @@ diffgramSecrets:
   MAILGUN_KEY: provided_by_diffgram_team
   HUB_SPOT_KEY: provided_by_diffgram_team
   SECRET_KEY: provided_by_diffgram_team
+  FERNET_KEY: NeL_RED6zZ1XF3XT7Yd1hzFPYyebrg6UdkECTOLHEdI= # Please change this for production usage
   INTER_SERVICE_SECRET: provided_by_diffgram_team
   # Use diffgram-postgres, postgres-rds-service depending on which DB service you set on dbSettings
   USER_PASSWORDS_SECRET: provided_by_diffgram_team
