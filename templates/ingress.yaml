@@ -7,7 +7,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.org/proxy-pass-headers: "directory_id"
+    nginx.org/proxy-pass-headers: directory_id
     {{ if eq .Values.useTls true}}
     cert-manager.io/issuer: "letsencrypt-prod"
     {{ end }}
