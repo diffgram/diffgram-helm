@@ -17,7 +17,7 @@ metadata:
     # Limit uploads to 8TB
     nginx.ingress.kubernetes.io/proxy-body-size: 800000m
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      proxy_pass_header directory_id
+      proxy_pass_header directory_id;
 spec:
  {{ if eq .Values.useTls true}}
   tls:
