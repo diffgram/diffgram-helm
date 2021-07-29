@@ -52,6 +52,8 @@ diffgramSecrets:
   SERVICE_ACCOUNT_JSON_B64: put_your_gcp_secret_in_base_64_here
   DIFFGRAM_AZURE_CONNECTION_STRING: put_your_azure_connection_string_here
 
+
+
 diffgramSettings:
   USERDOMAIN: kubernetes
   WALRUS_SERVICE_URL_BASE: example.com
@@ -70,6 +72,10 @@ diffgramSettings:
   SERVICE_ACCOUNT_JSON_B64: none
 
   SERVICE_ACCOUNT: sa_credentials.json
+  # Change this to a unique ID, otherwise leave default
+  DIFFGRAM_INSTALL_FINGERPRINT: helm_fingerprint_default
+  # If you know the OS diffgram is running ON put it here, otherwise leave default
+  DIFFGRAM_HOST_OS: helm_os_default
 
 imagePullCredentials:
   # The service account with permissions to pull from the GCR Repository. [Should be Provided by Diffgram Team.]

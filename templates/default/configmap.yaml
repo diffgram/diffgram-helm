@@ -16,4 +16,7 @@ data:
   SERVICE_ACCOUNT_FULL_PATH: {{ .Values.diffgramSettings.SERVICE_ACCOUNT_FULL_PATH }}
   DIFFGRAM_AZURE_CONTAINER_NAME: {{ .Values.diffgramSettings.DIFFGRAM_AZURE_CONTAINER_NAME }}
   ML__DIFFGRAM_AZURE_CONTAINER_NAME: {{ .Values.diffgramSettings.ML__DIFFGRAM_AZURE_CONTAINER_NAME }}
+  DIFFGRAM_INSTALL_FINGERPRINT: {{ .Values.diffgramSettings.DIFFGRAM_INSTALL_FINGERPRINT }}
+  DIFFGRAM_VERSION_TAG: {{ .Values.diffgramVersion }}
+  DIFFGRAM_HOST_OS: {{ .Values.diffgramSettings.DIFFGRAM_HOST_OS }}
   PYTHONPATH: "/app:/app/shared:/"
