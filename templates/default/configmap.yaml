@@ -19,4 +19,5 @@ data:
   DIFFGRAM_INSTALL_FINGERPRINT: {{ .Values.diffgramSettings.DIFFGRAM_INSTALL_FINGERPRINT }}
   DIFFGRAM_VERSION_TAG: {{ .Values.diffgramVersion }}
   DIFFGRAM_HOST_OS: {{ .Values.diffgramSettings.DIFFGRAM_HOST_OS }}
+  DATABASE_CONNECTION_POOL_SIZE: {{ .Values.diffgramSettings.DATABASE_CONNECTION_POOL_SIZE }}
   PYTHONPATH: "/app:/app/shared:/"
