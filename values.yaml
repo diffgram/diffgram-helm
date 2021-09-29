@@ -66,6 +66,8 @@ diffgramSettings:
   CLOUD_STORAGE_BUCKET: diffgram-testing
   ML__CLOUD_STORAGE_BUCKET: diffgram-testing
   SERVICE_ACCOUNT_FULL_PATH: /etc/gcp/sa_credentials.json
+  PROCESS_MEDIA_NUM_VIDEO_THREADS: "1"
+  PROCESS_MEDIA_NUM_FRAME_THREADS: "4"
   DATABASE_CONNECTION_POOL_SIZE: "10"
   GOOGLE_APPLICATION_CREDENTIALS: /etc/gcp/sa_credentials.json # Check the volume in deployment.yaml and service_account_secret.yaml
 
