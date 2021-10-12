@@ -15,6 +15,7 @@ spec:
       labels:
         app: diffgram-walrus
     spec:
+      terminationGracePeriodSeconds: 7200 # 2 hours
       {{ if .Values.nodeGroupLabel }}
       nodeSelector:
         poolName: {{ .Values.nodeGroupLabel }}
