@@ -8,7 +8,6 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/enable-cors: "true"
     nginx.org/proxy-pass-headers: directory_id
-    nginx.org/server-snippets: "gzip on;"
     {{ if eq .Values.useTls true}}
     cert-manager.io/issuer: "letsencrypt-prod"
     {{ end }}
