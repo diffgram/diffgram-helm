@@ -3,6 +3,8 @@ kind: ConfigMap
 data:
   enable-underscores-in-headers: "true"
   ignore-invalid-headers: "false"
+  use-gzip: "true" # ENABLE GZIP COMPRESSION
+  gzip-types: "*" # SPECIFY MIME TYPES TO COMPRESS ("*" FOR ALL) 
 metadata:
   name: nginx-configuration
   namespace: {{ .Release.Namespace }}
