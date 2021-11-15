@@ -23,3 +23,4 @@ data:
   PYTHONPATH: "/app:/app/shared:/"
   PROCESS_MEDIA_NUM_VIDEO_THREADS: {{ .Values.diffgramSettings.PROCESS_MEDIA_NUM_VIDEO_THREADS }}
   PROCESS_MEDIA_NUM_FRAME_THREADS: {{ .Values.diffgramSettings.PROCESS_MEDIA_NUM_FRAME_THREADS }}
+  NEW_RELIC_LICENSE_KEY: {{ .Values.diffgramSettings.NEW_RELIC_LICENSE_KEY }}
