@@ -70,6 +70,7 @@ diffgramSettings:
   PROCESS_MEDIA_NUM_FRAME_THREADS: "4"
   DATABASE_CONNECTION_POOL_SIZE: "10"
   GOOGLE_APPLICATION_CREDENTIALS: /etc/gcp/sa_credentials.json # Check the volume in deployment.yaml and service_account_secret.yaml
+  EMAIL_DOMAIN_NAME: example.com
 
   # Set this value if you want to use GCP as your storage. Put your json service account encoded in base 64
   SERVICE_ACCOUNT_JSON_B64: none
