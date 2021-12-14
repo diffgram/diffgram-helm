@@ -81,6 +81,8 @@ diffgramSettings:
   # If you know the OS diffgram is running ON put it here, otherwise leave default
   DIFFGRAM_HOST_OS: helm_os_default
   NEW_RELIC_LICENSE_KEY: none
+  ALLOW_EVENTHUB: False
+  EMAIL_VALIDATION: False
 
 imagePullCredentials:
   # The service account with permissions to pull from the GCR Repository. [Should be Provided by Diffgram Team.]

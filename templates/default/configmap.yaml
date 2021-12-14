@@ -25,3 +25,5 @@ data:
   PROCESS_MEDIA_NUM_FRAME_THREADS: {{ .Values.diffgramSettings.PROCESS_MEDIA_NUM_FRAME_THREADS }}
   NEW_RELIC_LICENSE_KEY: {{ .Values.diffgramSettings.NEW_RELIC_LICENSE_KEY }}
   EMAIL_DOMAIN_NAME: {{ .Values.diffgramSettings.EMAIL_DOMAIN_NAME }}
+  ALLOW_EVENTHUB: {{ .Values.diffgramSettings.ALLOW_EVENTHUB }}
+  EMAIL_VALIDATION: {{ .Values.diffgramSettings.EMAIL_VALIDATION }}
