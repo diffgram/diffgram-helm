@@ -83,6 +83,7 @@ diffgramSettings:
   NEW_RELIC_LICENSE_KEY: none
   ALLOW_EVENTHUB: False
   EMAIL_VALIDATION: False
+  ALLOW_STRIPE_BILLING: False
 
 imagePullCredentials:
   # The service account with permissions to pull from the GCR Repository. [Should be Provided by Diffgram Team.]
