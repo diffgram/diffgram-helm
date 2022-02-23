@@ -56,7 +56,7 @@ diffgramSecrets:
 
 diffgramSettings:
   USERDOMAIN: kubernetes
-  WALRUS_SERVIzCE_URL_BASE: example.com
+  WALRUS_SERVICE_URL_BASE: example.com
   DIFFGRAM_SYSTEM_MODE: production
   DIFFGRAM_STATIC_STORAGE_PROVIDER: gcp
   DIFFGRAM_S3_BUCKET_NAME: none
