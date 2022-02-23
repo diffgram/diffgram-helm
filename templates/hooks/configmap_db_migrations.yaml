@@ -32,3 +32,4 @@ data:
   ALLOW_EVENTHUB: {{ .Values.diffgramSettings.ALLOW_EVENTHUB }}
   EMAIL_VALIDATION: {{ .Values.diffgramSettings.EMAIL_VALIDATION }}
   ALLOW_STRIPE_BILLING: {{ .Values.diffgramSettings.ALLOW_STRIPE_BILLING }}
+  IS_OPEN_SOURCE: {{ .Values.diffgramSettings.IS_OPEN_SOURCE }}

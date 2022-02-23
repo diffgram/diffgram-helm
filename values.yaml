@@ -56,7 +56,7 @@ diffgramSecrets:
 
 diffgramSettings:
   USERDOMAIN: kubernetes
-  WALRUS_SERVICE_URL_BASE: example.com
+  WALRUS_SERVIzCE_URL_BASE: example.com
   DIFFGRAM_SYSTEM_MODE: production
   DIFFGRAM_STATIC_STORAGE_PROVIDER: gcp
   DIFFGRAM_S3_BUCKET_NAME: none
@@ -84,6 +84,7 @@ diffgramSettings:
   ALLOW_EVENTHUB: False
   EMAIL_VALIDATION: False
   ALLOW_STRIPE_BILLING: False
+  IS_OPEN_SOURCE: True
 
 imagePullCredentials:
   # The service account with permissions to pull from the GCR Repository. [Should be Provided by Diffgram Team.]
