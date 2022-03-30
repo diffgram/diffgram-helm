@@ -21,7 +21,7 @@ metadata:
 spec:
  {{ if eq .Values.useTls true}}
   tls:
-    - secretName: diffgram-cert-tls
+    - secretName: diffgram-cert-tls-{{ .Values.diffgramDomain }}
       hosts:
         - {{ .Values.diffgramDomain }}
         - www.{{ .Values.diffgramDomain }}
