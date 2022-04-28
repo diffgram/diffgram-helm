@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 # The Diffgram Version. Whenever a new update arrives, this will be changed.
-diffgramVersion: latest
+diffgramVersion: 0.13.3
 
 # Either 'opencore' or 'enterprise'. Please note that selecting 'enterprise'
 # requires that you also set imagePullCredentials.gcrCredentials.
@@ -15,9 +15,9 @@ diffgramEdition: opencore
 diffgramDomain: example.com
 
 # Set this to true if you want to use cert manager for TLS certificates generation.
-useCertManager: false
+useCertManager: true
 # Use it to activate TLS on the nginx ingress
-useTls: false
+useTls: true
 
 dbSettings:
   # Specify How the DB Service should be created
@@ -38,8 +38,8 @@ dbSettings:
 # All the Secrets Used in Diffgram.
 diffgramSecrets:
   STRIPE_API_KEY: none
-  DIFFGRAM_AWS_ACCESS_KEY_ID: none
-  DIFFGRAM_AWS_ACCESS_KEY_SECRET: none
+  DIFFGRAM_AWS_ACCESS_KEY_ID: write_your_aws_access_key
+  DIFFGRAM_AWS_ACCESS_KEY_SECRET: write_your_aws_access_key_secret
   _ANALYTICS_WRITE_KEY: provided_by_diffgram_team
   MAILGUN_KEY: provided_by_diffgram_team
   HUB_SPOT_KEY: provided_by_diffgram_team
@@ -58,7 +58,7 @@ diffgramSettings:
   USERDOMAIN: kubernetes
   WALRUS_SERVICE_URL_BASE: example.com
   DIFFGRAM_SYSTEM_MODE: production
-  DIFFGRAM_STATIC_STORAGE_PROVIDER: gcp
+  DIFFGRAM_STATIC_STORAGE_PROVIDER: aws
   DIFFGRAM_S3_BUCKET_NAME: none
   DIFFGRAM_AZURE_CONTAINER_NAME: none
   ML__DIFFGRAM_AZURE_CONTAINER_NAME: none
@@ -66,9 +66,9 @@ diffgramSettings:
   CLOUD_STORAGE_BUCKET: diffgram-testing
   ML__CLOUD_STORAGE_BUCKET: diffgram-testing
   SERVICE_ACCOUNT_FULL_PATH: /etc/gcp/sa_credentials.json
-  PROCESS_MEDIA_NUM_VIDEO_THREADS: "1"
-  PROCESS_MEDIA_NUM_FRAME_THREADS: "4"
-  DATABASE_CONNECTION_POOL_SIZE: "10"
+  PROCESS_MEDIA_NUM_VIDEO_THREADS: '"1"'
+  PROCESS_MEDIA_NUM_FRAME_THREADS: '"4"'
+  DATABASE_CONNECTION_POOL_SIZE: '"10"'
   GOOGLE_APPLICATION_CREDENTIALS: /etc/gcp/sa_credentials.json # Check the volume in deployment.yaml and service_account_secret.yaml
   EMAIL_DOMAIN_NAME: example.com
 
@@ -81,10 +81,10 @@ diffgramSettings:
   # If you know the OS diffgram is running ON put it here, otherwise leave default
   DIFFGRAM_HOST_OS: helm_os_default
   NEW_RELIC_LICENSE_KEY: none
-  ALLOW_EVENTHUB: False
-  EMAIL_VALIDATION: False
-  ALLOW_STRIPE_BILLING: False
-  IS_OPEN_SOURCE: True
+  ALLOW_EVENTHUB: '"False"'
+  EMAIL_VALIDATION: '"False"'
+  ALLOW_STRIPE_BILLING: '"False"'
+  IS_OPEN_SOURCE: '"True"'
 
 imagePullCredentials:
   # The service account with permissions to pull from the GCR Repository. [Should be Provided by Diffgram Team.]
@@ -95,30 +95,30 @@ nodeGroupLabel: null
 # The service for API calls.
 # This are minimal defaults. Please feel free to change them as you start having more usage
 defaultService:
-  numReplicas: 2
+  numReplicas: 1
   requests:
-    cpu: "2.0"
-    memory: "4G"
+    cpu: "1.0"
+    memory: "1G"
   limits:
     cpu: "2.0"
-    memory: "4G"
+    memory: "2G"
 # The service for the UI frontend.
 # This are minimal defaults. Please feel free to change them as you start having more usage
 frontendService:
   numReplicas: 1
   requests:
-    cpu: "2.0"
-    memory: "2G"
+    cpu: "1.0"
+    memory: "1G"
   limits:
-    cpu: "2.0"
-    memory: "2G"
+    cpu: "1.0"
+    memory: "1G"
 # The service for video processing. This is where the heavy processing takes place.
 # This are minimal defaults. Please feel free to change them as you start having more usage
 walrusService:
-  numReplicas: 2
+  numReplicas: 1
   requests:
-    cpu: "4.0"
-    memory: "14G"
+    cpu: "1.0"
+    memory: "1G"
   limits:
-    cpu: "8.0"
-    memory: "32G"
+    cpu: "2.0"
+    memory: "2G"

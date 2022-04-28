@@ -9,3 +9,10 @@ values_production*
 values_staging.yaml
 
 .vs
+example.com\+5-key.pem
+
+example.com\+5.pem
+
+example.com\+6-key.pem
+
+example.com\+6.pem
