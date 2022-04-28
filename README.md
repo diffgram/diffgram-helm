@@ -48,7 +48,8 @@ imagePullCredentials:
 `kubectl describe issuer letsencrypt-prod`
 
 # Installation
-`helm install diffgram ./diffgram`
+`git clone https://github.com/diffgram/diffgram-helm/`
+`helm install diffgram ./diffgram-helm`
 
 You can substitute `./diffgram` with whatever the path to this repo is on your local machine. Also feel free to install on any other namespace.
 
