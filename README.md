@@ -41,8 +41,7 @@ imagePullCredentials:
 ### TLS Ceritificates
 For Minikube, follow this guide: 
 
-https://minikube.sigs.k8s.io/docs/tutorials/custom_cert_ingress/
-
+https://minikube.sigs.k8s.io/docs/tutorials/custom_cert_ingress/ (Required the https://github.com/FiloSottile/mkcert Library)
 
 1. If you want to have TLS connections, please make sure you have a domain available and access to the name servers so you can modify the records to point to the IP addresses of the ingress.
 
