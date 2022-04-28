@@ -1,7 +1,12 @@
 # diffgram-helm
 Helm Chart for DIffgram
 
-# A. Pre-requisites
+
+Full Tutorial on Azure: https://medium.com/diffgram/tutorial-installing-diffgram-on-azure-aks-b9447685e271
+
+# How to Install: 
+
+## A. Pre-requisites
 
 ### Ingress Controller
 If you are using minikube make sure you've done:
@@ -39,9 +44,17 @@ imagePullCredentials:
 
 
 ### TLS Ceritificates
-For Minikube, follow this guide: 
+#### Using minikube (For local testing) 
+Install Cert Manager
+`helm repo add jetstack https://charts.jetstack.io`
 
-https://minikube.sigs.k8s.io/docs/tutorials/custom_cert_ingress/ (Required the https://github.com/FiloSottile/mkcert Library)
+`helm install cert-manager --namespace default jetstack/cert-manager --set installCRDs=true`
+
+Default domain on diffgram is: `example.com` so make sure you add that to your local hosts file:
+
+`echo "$(minikube ip) example.com" | sudo tee -a /etc/hosts`
+
+#### Using cert-manager             
 
 1. If you want to have TLS connections, please make sure you have a domain available and access to the name servers so you can modify the records to point to the IP addresses of the ingress.
 
@@ -61,12 +74,16 @@ https://minikube.sigs.k8s.io/docs/tutorials/custom_cert_ingress/ (Required the h
 4. After a few minutes you should be able to see the issuer and the certificate generated. You can confirm this by running:
 `kubectl describe issuer letsencrypt-prod`
 
-# B. Installation
+## B. Installation
 `git clone https://github.com/diffgram/diffgram-helm/`
 
 `helm install diffgram ./diffgram-helm --create-namespace`
 
 If you don't change anything on `values.yaml`. You will have the namespace `default` created on your cluster
+
+Note: if on Minikube: run `echo "$(minikube ip) example.com" | sudo tee -a /etc/hosts`
+
+To point minikube to domain example.com (or whatever domain you have set in the `diffgramDomain` inside `values.yaml`
 
 ### Values to Change in `values.yaml`
 Check section D. to see required values.
@@ -77,7 +94,7 @@ You can substitute `./diffgram-helm` with whatever the path to this repo is on y
 
 Future versions will provide a repo to download the chart without cloning from github.
 
-# C. Main Structure
+## C. Main Structure
 When deploying this chart there are 5 main components to be aware of:
 
 **1. default-service:** This is the service in charge for most of the API calls and data management. Both for the SDK and for the Frontend UI.
@@ -91,7 +108,7 @@ When deploying this chart there are 5 main components to be aware of:
 **5. ingress:** A Nginx ingress controller for accessing all the services. This is the entry point and router to all the above services.
 
 
-# D. Configurations:
+## D. Configurations:
 The following are some of the most important configurations of the values.yaml in the helm chart. Please feel free to contact us if you have any questions on any of the configurations.
 ## 4.1 Database Settings
 **1. dbSettings.dbProvider:** Set this to “rds”, "azure", or "local" depending on your DB managed service.
@@ -116,7 +133,7 @@ The following are some of the most important configurations of the values.yaml i
 
 **4. diffgramSettings.ML__DIFFGRAM_S3_BUCKET_NAME:** Set this to your S3’s bucket name for static file storage.
 
-# E. Common Issues:
+## E. Common Issues:
 
 1. My Helm Chart gets stuck during install and the timesout with 
 
