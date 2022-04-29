@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 # The Diffgram Version. Whenever a new update arrives, this will be changed.
-diffgramVersion: 0.13.3
+diffgramVersion: 0.14.1
 
 # Either 'opencore' or 'enterprise'. Please note that selecting 'enterprise'
 # requires that you also set imagePullCredentials.gcrCredentials.
