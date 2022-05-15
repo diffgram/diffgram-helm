@@ -55,16 +55,19 @@ spec:
         backend:
           service:
             name: diffgram-walrus
-            port.number: 8080
+            port:
+                number: 8080
       - path: /api(/|$)(.*)
         pathType: ImplementationSpecific
         backend:
           service:
             name: diffgram-default
-            port.number: 8080
+            port:
+                number: 8080
       - path: /(.*)
         pathType: ImplementationSpecific
         backend:
           service:
             name: frontend
-            port.number: 8080
+            port:
+                number: 8080
