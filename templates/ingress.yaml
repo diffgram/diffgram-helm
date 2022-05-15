@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: diffgram-ingress
@@ -52,28 +52,28 @@ spec:
       # NOTE: this one should come after all other routes. To avoid hijacking requests.
       - path: /api/walrus(/|$)(.*)
         backend:
-          serviceName: diffgram-walrus
-          servicePort: 8080
+          service.name: diffgram-walrus
+          service.port.number: 8080
       - path: /api(/|$)(.*)
         backend:
-          serviceName: diffgram-default
-          servicePort: 8080
+          service.name: diffgram-default
+          service.port.number: 8080
       - path: /(.*)
         backend:
-          serviceName: frontend
-          servicePort: 8080
+          service.name: frontend
+          service.port.number: 8080
   - http:
       paths:
       # NOTE: this one should come after all other routes. To avoid hijacking requests.
       - path: /api/walrus(/|$)(.*)
         backend:
-          serviceName: diffgram-walrus
-          servicePort: 8080
+          service.name: diffgram-walrus
+          service.port.number: 8080
       - path: /api(/|$)(.*)
         backend:
-          serviceName: diffgram-default
-          servicePort: 8080
+          service.name: diffgram-default
+          service.port.number: 8080
       - path: /(.*)
         backend:
-          serviceName: frontend
-          servicePort: 8080
+          service.name: frontend
+          service.port.number: 8080
