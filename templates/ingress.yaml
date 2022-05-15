@@ -51,29 +51,17 @@ spec:
       paths:
       # NOTE: this one should come after all other routes. To avoid hijacking requests.
       - path: /api/walrus(/|$)(.*)
+        pathType: ImplementationSpecific
         backend:
           service.name: diffgram-walrus
           service.port.number: 8080
       - path: /api(/|$)(.*)
+        pathType: ImplementationSpecific
         backend:
           service.name: diffgram-default
           service.port.number: 8080
       - path: /(.*)
-        backend:
-          service.name: frontend
-          service.port.number: 8080
-  - http:
-      paths:
-      # NOTE: this one should come after all other routes. To avoid hijacking requests.
-      - path: /api/walrus(/|$)(.*)
-        backend:
-          service.name: diffgram-walrus
-          service.port.number: 8080
-      - path: /api(/|$)(.*)
-        backend:
-          service.name: diffgram-default
-          service.port.number: 8080
-      - path: /(.*)
+        pathType: ImplementationSpecific
         backend:
           service.name: frontend
           service.port.number: 8080
