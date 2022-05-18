@@ -5,6 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    ingressclass.kubernetes.io/is-default-class: "true"
     nginx.ingress.kubernetes.io/use-regex: "true"
     {{ if eq .Values.useTls false}}
     nginx.ingress.kubernetes.io/enable-cors: "true"
@@ -49,7 +50,6 @@ spec:
   - host: {{ .Values.diffgramDomain }}
     http:
       paths:
-      # NOTE: this one should come after all other routes. To avoid hijacking requests.
       - path: /api/walrus(/|$)(.*)
         pathType: ImplementationSpecific
         backend:
