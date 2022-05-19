@@ -22,7 +22,7 @@ useTls: true
 dbSettings:
   # Specify How the DB Service should be created
   # - local: use a Postgres Image and Service (No external service) Recommended only for non-production enviroments.
-  # - rds: use an ExternalService with an AWS RDS instance. If you set this you need to provide the rdsEndpoint field.
+  # - rds: use an ExternalService with an AWSwi RDS instance. If you set this you need to provide the rdsEndpoint field.
   # - azure: use an ExternalService with an Azure Postgres instance. If you set this you need to provide the azureSqlEndpoint field.
   # - gcsql: use an ExternalService with a Google Cloud SQL instance. If you set this you need to provide the gcSqlEndpoint field.
   dbProvider: local
@@ -85,10 +85,10 @@ diffgramSettings:
   EMAIL_VALIDATION: '"False"'
   ALLOW_STRIPE_BILLING: '"False"'
   IS_OPEN_SOURCE: '"True"'
-  DIFFGRAM_MINIO_ENDPOINT_URL: '"False"'
-  DIFFGRAM_MINIO_ACCESS_KEY_ID: '"False"'
-  DIFFGRAM_MINIO_ACCESS_KEY_SECRET: '"False"'
-  DIFFGRAM_MINIO_DISABLED_SSL_VERIFY: '"False"'
+  DIFFGRAM_MINIO_ENDPOINT_URL: none
+  DIFFGRAM_MINIO_ACCESS_KEY_ID: none
+  DIFFGRAM_MINIO_ACCESS_KEY_SECRET: none
+  DIFFGRAM_MINIO_DISABLED_SSL_VERIFY: none
 
 imagePullCredentials:
   # The service account with permissions to pull from the GCR Repository. [Should be Provided by Diffgram Team.]
