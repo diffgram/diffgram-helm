@@ -85,10 +85,10 @@ diffgramSettings:
   EMAIL_VALIDATION: '"False"'
   ALLOW_STRIPE_BILLING: '"False"'
   IS_OPEN_SOURCE: '"True"'
-  DIFFGRAM_MINIO_ENDPOINT_URL: ""
-  DIFFGRAM_MINIO_ACCESS_KEY_ID: ""
-  DIFFGRAM_MINIO_ACCESS_KEY_SECRET: ""
-  DIFFGRAM_MINIO_DISABLED_SSL_VERIFY: ""
+  DIFFGRAM_MINIO_ENDPOINT_URL: ''''''
+  DIFFGRAM_MINIO_ACCESS_KEY_ID: ''''''
+  DIFFGRAM_MINIO_ACCESS_KEY_SECRET: ''''''
+  DIFFGRAM_MINIO_DISABLED_SSL_VERIFY: ''''''
 
 imagePullCredentials:
   # The service account with permissions to pull from the GCR Repository. [Should be Provided by Diffgram Team.]
