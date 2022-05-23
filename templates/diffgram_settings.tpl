@@ -31,5 +31,5 @@
   DIFFGRAM_MINIO_DISABLED_SSL_VERIFY: {{.Values.diffgramSettings.DIFFGRAM_MINIO_DISABLED_SSL_VERIFY}}
   RABBITMQ_HOST: {{.Values.diffgramSettings.RABBITMQ_HOST}}
   RABBITMQ_PORT: {{.Values.diffgramSettings.RABBITMQ_PORT}}
-  RABBITMQ_DEFAULT_USER: {{.Values.rabbitmq.auth.rabbitmq}}
+  RABBITMQ_DEFAULT_USER: {{.Values.rabbitmq.auth.username}}
 {{- end }}

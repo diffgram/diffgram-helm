@@ -7,4 +7,4 @@ metadata:
     "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded
   name: db-migrations-configmap
 data:
-{{- template "diffgram.settings" . }}
+  {{- template "diffgram.settings" . }}

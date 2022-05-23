@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 # The Diffgram Version. Whenever a new update arrives, this will be changed.
-diffgramVersion: 0.16.0
+diffgramVersion: testwfbuilder
 
 # Either 'opencore' or 'enterprise'. Please note that selecting 'enterprise'
 # requires that you also set imagePullCredentials.gcrCredentials.
@@ -89,8 +89,8 @@ diffgramSettings:
   DIFFGRAM_MINIO_ACCESS_KEY_ID: none
   DIFFGRAM_MINIO_ACCESS_KEY_SECRET: none
   DIFFGRAM_MINIO_DISABLED_SSL_VERIFY: none
-  RABBITMQ_PORT: 5672
-  RABBITMQ_HOST: diffgram-rabbitmq
+  RABBITMQ_PORT: "'5672'"
+  RABBITMQ_HOST: "diffgram-rabbitmq"
 
 imagePullCredentials:
   # The service account with permissions to pull from the GCR Repository. [Should be Provided by Diffgram Team.]
