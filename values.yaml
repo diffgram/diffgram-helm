@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 # The Diffgram Version. Whenever a new update arrives, this will be changed.
-diffgramVersion: testwfbuilder
+diffgramVersion: DAD-244-actions-builder-v-2
 
 # Either 'opencore' or 'enterprise'. Please note that selecting 'enterprise'
 # requires that you also set imagePullCredentials.gcrCredentials.
@@ -85,6 +85,7 @@ diffgramSettings:
   EMAIL_VALIDATION: '"False"'
   ALLOW_STRIPE_BILLING: '"False"'
   IS_OPEN_SOURCE: '"True"'
+  Iwe can add S_OPEN_SOURCE: '"True"'
   DIFFGRAM_MINIO_ENDPOINT_URL: none
   DIFFGRAM_MINIO_ACCESS_KEY_ID: none
   DIFFGRAM_MINIO_ACCESS_KEY_SECRET: none

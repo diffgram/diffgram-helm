@@ -69,7 +69,7 @@ Default domain on diffgram is: `example.com` so make sure you add that to your l
 3. Reinstall the helm chart
 
 
-`helm upgrade diffgram -f diffgram/new_updated_values_from_above_step.yaml`
+`helm upgrade -n diffgram-ns diffgram -f diffgram/new_updated_values_from_above_step.yaml`
 
 4. After a few minutes you should be able to see the issuer and the certificate generated. You can confirm this by running:
 `kubectl describe issuer letsencrypt-prod`
@@ -77,7 +77,7 @@ Default domain on diffgram is: `example.com` so make sure you add that to your l
 ## B. Installation
 `git clone https://github.com/diffgram/diffgram-helm/`
 
-`helm install diffgram ./diffgram-helm --create-namespace`
+`helm install -n diffgram-ns diffgram ./diffgram-helm --create-namespace`
 
 If you don't change anything on `values.yaml`. You will have the namespace `default` created on your cluster
 
