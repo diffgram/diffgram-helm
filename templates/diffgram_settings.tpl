@@ -8,7 +8,7 @@
   CLOUD_STORAGE_BUCKET:  {{ .Values.diffgramSettings.CLOUD_STORAGE_BUCKET }}
   ML__CLOUD_STORAGE_BUCKET:  {{ .Values.diffgramSettings.ML__CLOUD_STORAGE_BUCKET }}
   URL_BASE: {{ .Values.diffgramDomain }}
-  WALRUS_SERVICE_URL_BASE: {{ .Values.diffgramSettings.WALRUS_SERVICE_URL_BASE }}
+  WALRUS_SERVICE_URL_BASE: https://{{ .Values.diffgramDomain }}
   SERVICE_ACCOUNT_FULL_PATH: {{ .Values.diffgramSettings.SERVICE_ACCOUNT_FULL_PATH }}
   DIFFGRAM_AZURE_CONTAINER_NAME: {{ .Values.diffgramSettings.DIFFGRAM_AZURE_CONTAINER_NAME }}
   ML__DIFFGRAM_AZURE_CONTAINER_NAME: {{ .Values.diffgramSettings.ML__DIFFGRAM_AZURE_CONTAINER_NAME }}

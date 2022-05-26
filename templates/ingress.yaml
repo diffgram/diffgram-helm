@@ -7,11 +7,10 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     ingressclass.kubernetes.io/is-default-class: "true"
     nginx.ingress.kubernetes.io/use-regex: "true"
-    {{ if eq .Values.useTls false}}
     nginx.ingress.kubernetes.io/enable-cors: "true"
+    {{ if eq .Values.useTls false}}
     nginx.ingress.kubernetes.io/hsts: "false"
     hsts: "false"
-
     nginx.ingress.kubernetes.io/configuration-snippet: |
       add_header Access-Control-Allow-Methods "POST, GET, PUT, PATCH, DELETE, OPTIONS";
       add_header Access-Control-Allow-Credentials true;
@@ -24,15 +23,11 @@ metadata:
       }
     {{ end }}
     {{ if eq .Values.useTls true}}
-    nginx.ingress.kubernetes.io/enable-cors: "true"
+    cert-manager.io/issuer: {{ .Values.tlsIssuer }}
     nginx.ingress.kubernetes.io/configuration-snippet: |
       proxy_pass_header directory_id;
     {{ end }}
-
     nginx.org/proxy-pass-headers: directory_id
-    {{ if eq .Values.useTls true}}
-    cert-manager.io/issuer: {{ .Values.tlsIssuer }}
-    {{ end }}
     watch-namespace: {{ .Release.Namespace }}
     # Limit uploads to 8TB
     nginx.ingress.kubernetes.io/proxy-body-size: 800000m
@@ -46,6 +41,16 @@ spec:
       secretName: diffgram-cert-tls-{{ .Values.diffgramDomain }}
   {{ end }}
   rules:
+    - host: rabbitmq.{{ .Values.diffgramDomain}}
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: diffgram-rabbitmq
+                port:
+                  number: 15672
     - host: {{ .Values.diffgramDomain }}
       http:
         paths:
