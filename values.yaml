@@ -12,12 +12,16 @@ diffgramEdition: opencore
 # Set this to your public domain where you want diffgram to be.
 # This must be a domain name and not a public IP address.
 # The chart will generate TLS certificates for the provided domain if useCertManager is 'true'
-diffgramDomain: example.com
+diffgramDomain: mydiffgram1.com
 
 # Set this to true if you want to use cert manager for TLS certificates generation.
 useCertManager: true
+
 # Use it to activate TLS on the nginx ingress
 useTls: true
+tlsIssuer: issuer-local # One of: "issuer-local", "letsencrypt-staging", or "letsencrypt-prod"
+localCaSecretName: my-local-ca-key-pair
+issuerEmail: pablo.estrada@diffgram.com
 
 dbSettings:
   # Specify How the DB Service should be created

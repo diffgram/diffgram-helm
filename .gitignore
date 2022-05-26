@@ -19,3 +19,8 @@ example.com\+6.pem
 
 # Chart dependencies
 **/charts/*.tgz
+ca.crt
+
+ca.key
+
+local-ca.crt

@@ -46,15 +46,41 @@ imagePullCredentials:
 ### TLS Ceritificates
 #### Using minikube (For local testing) 
 Install Cert Manager
-`helm repo add jetstack https://charts.jetstack.io`
+```
+helm repo add jetstack https://charts.jetstack.io
+helm install cert-manager --namespace default jetstack/cert-manager --set installCRDs=true
+```
 
-`helm install cert-manager --namespace default jetstack/cert-manager --set installCRDs=true`
 
 Default domain on diffgram is: `example.com` so make sure you add that to your local hosts file:
 
 `echo "$(minikube ip) example.com" | sudo tee -a /etc/hosts`
 
-#### Using cert-manager             
+In order for TLS to work on your local machine, you will need to provide local certificate authorities.
+Otherwise your web browser will detect the certificates as invalid.
+
+To do that you can generate a key and certificate like this:
+```
+# Generate key
+openssl genrsa -out ca.key 2048
+# Create CA certificate signing it with the previous key.
+openssl req -x509 -new -nodes -key ca.key -sha256 -subj "/CN=sampleissuer.local" -days 1024 -out ca.crt -extensions v3_ca
+```
+Now create the certificates as secrets on your minkube cluster:
+```angular2html
+kubectl create secret tls my-local-ca-key-pair --key=ca.key --cert=ca.crt
+```
+Finally Modify your `values.yaml` so that helm chart can grab the secret using cert-manager
+issuers. Set `tlsIssuer` to `issuer-local` and `localCaSecretName` to the name you have to the secret created above:
+
+```angular2html
+tlsIssuer: issuer-local # One of: "issuer-local", "letsencrypt-staging", or "letsencrypt-prod"
+localCaSecretName: my-local-ca-key-pair
+
+```
+
+
+#### Using cert-manager & Public Domains           
 
 1. If you want to have TLS connections, please make sure you have a domain available and access to the name servers so you can modify the records to point to the IP addresses of the ingress.
 
