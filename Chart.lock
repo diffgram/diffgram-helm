@@ -1,6 +1,6 @@
 dependencies:
-- name: cert-manager
-  repository: https://charts.jetstack.io/
-  version: v1.1.0
-digest: sha256:50d9686126f61b7d7b8a50112464b41ac426a483ae053b4820c9e5f953cf7b76
-generated: "2021-01-29T14:30:59.744116786-06:00"
+- name: rabbitmq
+  repository: https://charts.bitnami.com/bitnami
+  version: 9.1.4
+digest: sha256:a92c6d671ae303d36df25c5c05705ee5193e1e22a6987e1476f4f815aa9887d7
+generated: "2022-05-24T22:45:09.592488539-06:00"

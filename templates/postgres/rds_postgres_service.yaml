@@ -5,6 +5,11 @@ metadata:
   labels:
     app: postgres-rds-service
   name: postgres-rds-service
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "-2"
 spec:
   externalName: {{ .Values.dbSettings.rdsEndpoint }}
   selector:
