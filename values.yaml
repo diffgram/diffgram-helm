@@ -19,7 +19,7 @@ useCertManager: true
 
 # Use it to activate TLS on the nginx ingress
 useTls: true
-tlsIssuer: issuer-local # One of: "issuer-local", "letsencrypt-staging", or "letsencrypt-prod"
+tlsIssuer: letsencrypt-prod # One of: "issuer-local", "letsencrypt-staging", or "letsencrypt-prod"
 localCaSecretName: my-local-ca-key-pair
 issuerEmail: pablo.estrada@diffgram.com
 
