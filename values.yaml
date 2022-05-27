@@ -116,8 +116,8 @@ rabbitmq:
       cpu: "1.0"
       memory: "1G"
     limits:
-      cpu: "2.0"
-      memory: "2G"
+      cpu: "1.0"
+      memory: "1G"
 ####### End Dependencies
 
 nodeGroupLabel: null
@@ -141,8 +141,8 @@ eventHandlersService:
     cpu: "1.0"
     memory: "1G"
   limits:
-    cpu: "2.0"
-    memory: "2G"
+    cpu: "1.0"
+    memory: "1G"
 # The service for the UI frontend.
 # This are minimal defaults. Please feel free to change them as you start having more usage
 frontendService:
