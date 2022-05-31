@@ -10,6 +10,7 @@ metadata:
     # job is considered part of the release.
     "helm.sh/hook": pre-install
     "helm.sh/hook-weight": "-2"
+    "helm.sh/hook-delete-policy": hook-failed
 spec:
   externalName: {{ .Values.dbSettings.azureSqlEndpoint }}
   selector:
