@@ -91,7 +91,7 @@ localCaSecretName: my-local-ca-key-pair
 2. Now edit the values.yaml of Diffgram’s helm chart and change the following keys:
  - **diffgramDomain:** set it to the domain you own.
  - **useCertManager:** set this to true. This will allow the certificate issue to be created so you can automatically get a TLS certificate for your domain with let’s encrypt.
-
+ - **tlsIssuer** set this to `letsencrypt-prod` so that TLS is validated by Let's Encrypt.
 3. Reinstall the helm chart
 
 
