@@ -82,6 +82,10 @@ localCaSecretName: my-local-ca-key-pair
 
 #### Using cert-manager & Public Domains           
 
+##### Caution
+This guide assumes you will be using a regular domain name like `diffgram.com`. If you are using an auto generated domain name it may require different configuration.
+
+##### Guide
 1. If you want to have TLS connections, please make sure you have a domain available and access to the name servers so you can modify the records to point to the IP addresses of the ingress.
 
 `helm repo add jetstack https://charts.jetstack.io`
