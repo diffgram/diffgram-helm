@@ -3,6 +3,7 @@
   DIFFGRAM_SYSTEM_MODE: {{ .Values.diffgramSettings.DIFFGRAM_SYSTEM_MODE }}
   DIFFGRAM_STATIC_STORAGE_PROVIDER: {{ .Values.diffgramSettings.DIFFGRAM_STATIC_STORAGE_PROVIDER }}
   DIFFGRAM_S3_BUCKET_NAME: {{ .Values.diffgramSettings.DIFFGRAM_S3_BUCKET_NAME }}
+  IS_DIFFGRAM_S3_V4_SIGNATURE: {{ .Values.diffgramSettings.IS_DIFFGRAM_S3_V4_SIGNATURE }}
   ML__DIFFGRAM_S3_BUCKET_NAME: {{ .Values.diffgramSettings.ML__DIFFGRAM_S3_BUCKET_NAME }}
   GOOGLE_APPLICATION_CREDENTIALS: /etc/gcp/sa_credentials.json # Check the volume in deployment.yaml and service_account_secret.yaml
   CLOUD_STORAGE_BUCKET:  {{ .Values.diffgramSettings.CLOUD_STORAGE_BUCKET }}
