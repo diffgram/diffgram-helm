@@ -82,6 +82,11 @@ localCaSecretName: my-local-ca-key-pair
 
 #### Using cert-manager & Public Domains           
 
+##### Caution
+This guide assumes you will be using a regular domain name like `diffgram.com`. If you are using an auto generated domain name it may require different configuration.
+SSL is up to you/your IT team. For debugging the config tools like [SSL Labs](https://www.ssllabs.com/ssltest/analyze.html) may be useful.
+
+##### Guide
 1. If you want to have TLS connections, please make sure you have a domain available and access to the name servers so you can modify the records to point to the IP addresses of the ingress.
 
 `helm repo add jetstack https://charts.jetstack.io`
@@ -91,7 +96,7 @@ localCaSecretName: my-local-ca-key-pair
 2. Now edit the values.yaml of Diffgram’s helm chart and change the following keys:
  - **diffgramDomain:** set it to the domain you own.
  - **useCertManager:** set this to true. This will allow the certificate issue to be created so you can automatically get a TLS certificate for your domain with let’s encrypt.
-
+ - **tlsIssuer** set this to `letsencrypt-prod` so that TLS is validated by Let's Encrypt.
 3. Reinstall the helm chart
 
 
