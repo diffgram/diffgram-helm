@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 # The Diffgram Version. Whenever a new update arrives, this will be changed.
-diffgramVersion: 1.0.0
+diffgramVersion: 1.1.1
 
 # Either 'opencore' or 'enterprise'. Please note that selecting 'enterprise'
 # requires that you also set imagePullCredentials.gcrCredentials.
@@ -63,6 +63,7 @@ diffgramSettings:
   DIFFGRAM_SYSTEM_MODE: production
   DIFFGRAM_STATIC_STORAGE_PROVIDER: aws
   DIFFGRAM_S3_BUCKET_NAME: diffgram-testing
+  DIFFGRAM_S3_BUCKET_REGION: us-west-1
   DIFFGRAM_AZURE_CONTAINER_NAME: diffgram-testing
   ML__DIFFGRAM_AZURE_CONTAINER_NAME: diffgram-testing
   ML__DIFFGRAM_S3_BUCKET_NAME: diffgram-testing
@@ -96,6 +97,8 @@ diffgramSettings:
   DIFFGRAM_MINIO_DISABLED_SSL_VERIFY: '"False"'
   RABBITMQ_PORT: "'5672'"
   RABBITMQ_HOST: "diffgram-rabbitmq"
+  SIGNED_URL_CACHE_MINIMUM_DAYS_VALID: "'5'"
+  SIGNED_URL_CACHE_NEW_OFFSET_DAYS_VALID: "'6'"
 
 imagePullCredentials:
   # The service account with permissions to pull from the GCR Repository. [Should be Provided by Diffgram Team.]
