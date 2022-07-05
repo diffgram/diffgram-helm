@@ -38,7 +38,7 @@
   RABBITMQ_DEFAULT_USER: {{.Values.rabbitmq.auth.username}}
   USE_OAUTH2: {{.Values.diffgramSettings.USE_OAUTH2}}
   OAUTH2_PROVIDER_NAME: {{.Values.diffgramSettings.OAUTH2_PROVIDER_NAME}}
-  OAUTH2_PROVIDER_HOST: {{.Values.d  KEY_CLOAK_MASTER_PASSWORD: '"admin"'iffgramSettings.OAUTH2_PROVIDER_HOST}}
+  OAUTH2_PROVIDER_HOST: {{.Values.diffgramSettings.OAUTH2_PROVIDER_HOST}}
   OAUTH2_PROVIDER_CLIENT_ID: {{.Values.diffgramSettings.OAUTH2_PROVIDER_CLIENT_ID}}
   OAUTH2_PROVIDER_PUBLIC_KEY: {{.Values.diffgramSettings.OAUTH2_PROVIDER_PUBLIC_KEY}}
   DISABLE_SELF_REGISTRATION: {{.Values.diffgramSettings.DISABLE_SELF_REGISTRATION}}
