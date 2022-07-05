@@ -56,7 +56,12 @@ diffgramSecrets:
   SERVICE_ACCOUNT_JSON_B64: put_your_gcp_secret_in_base_64_here
   DIFFGRAM_AZURE_CONNECTION_STRING: put_your_azure_connection_string_here
 
+  # OAuth2 Secrets
+  OAUTH2_PROVIDER_CLIENT_SECRET: none
 
+  # Keycloak specific secrets
+  KEY_CLOAK_MASTER_PASSWORD: '"admin"'
+  KEY_CLOAK_DIFFGRAM_PASSWORD: '"admin"'
 
 diffgramSettings:
   USERDOMAIN: kubernetes
@@ -99,6 +104,22 @@ diffgramSettings:
   RABBITMQ_HOST: "diffgram-rabbitmq"
   SIGNED_URL_CACHE_MINIMUM_DAYS_VALID: "'5'"
   SIGNED_URL_CACHE_NEW_OFFSET_DAYS_VALID: "'6'"
+
+  # OAUTH2 Settings
+  USE_OAUTH2: "'False'"
+  OAUTH2_PROVIDER_NAME: "cognito"
+  OAUTH2_PROVIDER_HOST: "http://localhost:8099/auth/"
+  OAUTH2_PROVIDER_CLIENT_ID: "diffgram"
+  OAUTH2_PROVIDER_PUBLIC_KEY: none
+  DISABLE_SELF_REGISTRATION: '"False"'
+
+  # Cognito-specific Settings
+  COGNITO_LOGIN_URL: '"False"'
+
+  # Keycloak-specific Settings
+  KEY_CLOAK_MASTER_USER: '"admin"'
+  KEY_CLOAK_DIFFGRAM_USER: '"admin"'
+  KEYCLOAK_REALM: '"admin"'
 
 imagePullCredentials:
   # The service account with permissions to pull from the GCR Repository. [Should be Provided by Diffgram Team.]

@@ -36,4 +36,14 @@
   RABBITMQ_HOST: {{.Values.diffgramSettings.RABBITMQ_HOST}}
   RABBITMQ_PORT: {{.Values.diffgramSettings.RABBITMQ_PORT}}
   RABBITMQ_DEFAULT_USER: {{.Values.rabbitmq.auth.username}}
+  USE_OAUTH2: {{.Values.diffgramSettings.USE_OAUTH2}}
+  OAUTH2_PROVIDER_NAME: {{.Values.diffgramSettings.OAUTH2_PROVIDER_NAME}}
+  OAUTH2_PROVIDER_HOST: {{.Values.d  KEY_CLOAK_MASTER_PASSWORD: '"admin"'iffgramSettings.OAUTH2_PROVIDER_HOST}}
+  OAUTH2_PROVIDER_CLIENT_ID: {{.Values.diffgramSettings.OAUTH2_PROVIDER_CLIENT_ID}}
+  OAUTH2_PROVIDER_PUBLIC_KEY: {{.Values.diffgramSettings.OAUTH2_PROVIDER_PUBLIC_KEY}}
+  DISABLE_SELF_REGISTRATION: {{.Values.diffgramSettings.DISABLE_SELF_REGISTRATION}}
+  COGNITO_LOGIN_URL: {{.Values.diffgramSettings.COGNITO_LOGIN_URL}}
+  KEY_CLOAK_MASTER_USER: {{.Values.diffgramSettings.KEY_CLOAK_MASTER_USER}}
+  KEY_CLOAK_DIFFGRAM_USER: {{.Values.diffgramSettings.KEY_CLOAK_DIFFGRAM_USER}}
+  KEYCLOAK_REALM: {{.Values.diffgramSettings.KEYCLOAK_REALM}}
 {{- end }}
