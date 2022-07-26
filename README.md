@@ -166,7 +166,7 @@ The following are some of the most important configurations of the values.yaml i
 
 ## E. Common Issues:
 
-1. My Helm Chart gets stuck during install and the timesout with 
+### 1. My Helm Chart gets stuck during install and the timesout with 
 
 Try doing `kubectl get pods` and find a pod named `diffgram-pre-install-{SOME-ID}`.
 
@@ -176,4 +176,6 @@ This will show the logs of the POD to further debug the issue. Most common cause
 
 - Missing Blob Storage Provider Credentials (Either AWS Access Keys, GCP Service Account or Azure Conn String)
 
+### 2. `directory_id` header is not present on my SDK requests.
+Your ingress might not have the `allow-underscores-in-headers` config. Please enable it by looking at this config: https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#enable-underscores-in-headers
 
