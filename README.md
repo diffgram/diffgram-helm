@@ -46,7 +46,10 @@ imagePullCredentials:
 ### TLS Ceritificates
 #### Using minikube (For local testing) 
 Install Cert Manager
+
+https://artifacthub.io/packages/helm/microfunctions/cert-manager
 ```
+kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.2.0/cert-manager.crds.yaml
 helm repo add jetstack https://charts.jetstack.io
 helm install cert-manager --namespace default jetstack/cert-manager --set installCRDs=true
 ```
