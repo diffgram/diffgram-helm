@@ -102,6 +102,7 @@ diffgramSettings:
   DIFFGRAM_MINIO_DISABLED_SSL_VERIFY: '"False"'
   RABBITMQ_PORT: "'5672'"
   RABBITMQ_HOST: "diffgram-rabbitmq"
+  RABBITMQ_USE_SSL: '"False"'
   SIGNED_URL_CACHE_MINIMUM_DAYS_VALID: "'5'"
   SIGNED_URL_CACHE_NEW_OFFSET_DAYS_VALID: "'6'"
 
@@ -129,6 +130,7 @@ imagePullCredentials:
 ####### Dependencies
 # Read: https://github.com/bitnami/charts/tree/master/bitnami/rabbitmq for further configs
 useRabbitMq: true
+hostedRabbitUrl: null
 rabbitmq:
   auth:
     username: "diffgram"
