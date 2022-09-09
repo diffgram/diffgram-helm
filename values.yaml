@@ -130,7 +130,6 @@ imagePullCredentials:
 ####### Dependencies
 # Read: https://github.com/bitnami/charts/tree/master/bitnami/rabbitmq for further configs
 useRabbitMq: true
-hostedRabbitUrl: null
 rabbitmq:
   auth:
     username: "diffgram"
