@@ -45,7 +45,6 @@ diffgramSecrets:
   DIFFGRAM_AWS_ACCESS_KEY_ID: none
   DIFFGRAM_AWS_ACCESS_KEY_SECRET: none
   _ANALYTICS_WRITE_KEY: provided_by_diffgram_team
-  MAILGUN_KEY: provided_by_diffgram_team
   HUB_SPOT_KEY: provided_by_diffgram_team
   SECRET_KEY: provided_by_diffgram_team
   FERNET_KEY: NeL_RED6zZ1XF3XT7Yd1hzFPYyebrg6UdkECTOLHEdI= # Please change this for production usage
@@ -63,6 +62,10 @@ diffgramSecrets:
   KEY_CLOAK_MASTER_PASSWORD: '"admin"'
   KEY_CLOAK_DIFFGRAM_PASSWORD: '"admin"'
 
+  # Email Secrets
+  MAILGUN_KEY: none
+  SMTP_PASSWORD: none
+
 diffgramSettings:
   USERDOMAIN: kubernetes
   DIFFGRAM_SYSTEM_MODE: production
@@ -79,7 +82,7 @@ diffgramSettings:
   PROCESS_MEDIA_NUM_FRAME_THREADS: '"4"'
   DATABASE_CONNECTION_POOL_SIZE: '"10"'
   GOOGLE_APPLICATION_CREDENTIALS: /etc/gcp/sa_credentials.json # Check the volume in deployment.yaml and service_account_secret.yaml
-  EMAIL_DOMAIN_NAME: example.com
+
   IS_DIFFGRAM_S3_V4_SIGNATURE: '"False"'
 
   # Set this value if you want to use GCP as your storage. Put your json service account encoded in base 64
@@ -92,7 +95,7 @@ diffgramSettings:
   DIFFGRAM_HOST_OS: helm_os_default
   NEW_RELIC_LICENSE_KEY: none
   ALLOW_EVENTHUB: '"False"'
-  EMAIL_VALIDATION: '"False"'
+
   ALLOW_STRIPE_BILLING: '"False"'
   IS_OPEN_SOURCE: '"True"'
   Iwe can add S_OPEN_SOURCE: '"True"'
@@ -105,6 +108,15 @@ diffgramSettings:
   RABBITMQ_USE_SSL: '"False"'
   SIGNED_URL_CACHE_MINIMUM_DAYS_VALID: "'5'"
   SIGNED_URL_CACHE_NEW_OFFSET_DAYS_VALID: "'6'"
+
+  # Email Settings
+  EMAIL_VALIDATION: '"False"' # Turns on email verification for new accounts.
+  EMAIL_DOMAIN_NAME: none
+  SMTP_HOST: none
+  SMTP_PORT: none
+  SMTP_USERNAME: none
+  SMTP_FROM_EMAIL: none
+
 
   # OAUTH2 Settings
   USE_OAUTH2: "'False'"
