@@ -4,6 +4,7 @@
   DIFFGRAM_AWS_ACCESS_KEY_ID: {{ .Values.diffgramSecrets.DIFFGRAM_AWS_ACCESS_KEY_ID }}
   _ANALYTICS_WRITE_KEY: {{ .Values.diffgramSecrets._ANALYTICS_WRITE_KEY }}
   MAILGUN_KEY: {{ .Values.diffgramSecrets.MAILGUN_KEY }}
+  SMTP_PASSWORD: {{ .Values.diffgramSecrets.SMTP_PASSWORD }}
   HUB_SPOT_KEY: {{ .Values.diffgramSecrets.HUB_SPOT_KEY }}
   SECRET_KEY: {{ .Values.diffgramSecrets.SECRET_KEY }}
   INTER_SERVICE_SECRET: {{ .Values.diffgramSecrets.INTER_SERVICE_SECRET }}
