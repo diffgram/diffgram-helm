@@ -20,17 +20,8 @@ spec:
       nodeSelector:
         poolName: {{ .Values.nodeGroupLabel }}
       {{ end }}
-      {{ if eq .Values.diffgramEdition "enterprise"}}
-      imagePullSecrets:
-      - name: diffgramsecret
-      {{ end }}
       containers:
-      {{ if eq .Values.diffgramEdition "enterprise"}}
-      - image: gcr.io/diffgram-enterprise/frontend:{{ .Values.diffgramVersion }}
-      {{ end }}
-      {{ if eq .Values.diffgramEdition "opencore"}}
-      - image: gcr.io/diffgram-open-core/frontend:{{ .Values.diffgramVersion }}
-      {{ end }}
+      - image: diffgram/frontend:{{ .Values.diffgramVersion }}
         imagePullPolicy: Always
         name: frontend
         resources:

@@ -5,10 +5,6 @@
 # The Diffgram Version. Whenever a new update arrives, this will be changed.
 diffgramVersion: 1.4.3
 
-# Either 'opencore' or 'enterprise'. Please note that selecting 'enterprise'
-# requires that you also set imagePullCredentials.gcrCredentials.
-diffgramEdition: opencore
-
 # Set this to your public domain where you want diffgram to be.
 # This must be a domain name and not a public IP address.
 # The chart will generate TLS certificates for the provided domain if useCertManager is 'true'
@@ -132,11 +128,6 @@ diffgramSettings:
   KEY_CLOAK_MASTER_USER: '"admin"'
   KEY_CLOAK_DIFFGRAM_USER: '"admin"'
   KEYCLOAK_REALM: '"admin"'
-
-imagePullCredentials:
-  # The service account with permissions to pull from the GCR Repository. [Should be Provided by Diffgram Team.]
-  gcrCredentials: provided_by_diffgram_team
-
 
 ####### Dependencies
 # Read: https://github.com/bitnami/charts/tree/master/bitnami/rabbitmq for further configs
