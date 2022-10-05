@@ -108,7 +108,7 @@ diffgramSettings:
   EMAIL_VALIDATION: '"False"' # Turns on email verification for new accounts.
   EMAIL_DOMAIN_NAME: example.com
   SMTP_HOST: none
-  SMTP_PORT: none
+  SMTP_PORT: '"465"'
   SMTP_USERNAME: none
   SMTP_FROM_EMAIL: none
 
