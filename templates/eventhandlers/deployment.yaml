@@ -19,10 +19,6 @@ spec:
       nodeSelector:
         poolName: {{ .Values.nodeGroupLabel }}
       {{ end }}
-      {{ if eq .Values.diffgramEdition "enterprise"}}
-      imagePullSecrets:
-      - name: diffgramsecret
-      {{ end }}
       volumes:
       {{ if eq .Values.diffgramSettings.DIFFGRAM_STATIC_STORAGE_PROVIDER "gcp"}}
       - name: service-account-credentials-volume
@@ -47,12 +43,7 @@ spec:
         command: ['sh', '-c', 'until pg_isready -h postgres-azure-service -p 5432; do echo waiting for database; sleep 2; done;']
         {{ end }}
       containers:
-      {{ if eq .Values.diffgramEdition "enterprise"}}
-      - image: gcr.io/diffgram-enterprise/eventhandlers:{{ .Values.diffgramVersion }}
-      {{ end }}
-      {{ if eq .Values.diffgramEdition "opencore"}}
-      - image: gcr.io/diffgram-open-core/eventhandlers:{{ .Values.diffgramVersion }}
-      {{ end }}
+      - image: diffgram/eventhandlers:{{ .Values.diffgramVersion }}
         imagePullPolicy: Always
         name: diffgram-eventhandlers
         ports:

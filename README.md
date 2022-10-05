@@ -17,32 +17,6 @@ To have the ingress enabled, otherwise you won't be able to acess your diffgram 
 
 If you are not on minikube, you can use the Nginx K8s Ingress Controller. Check how to install on your cloud provider here: https://kubernetes.github.io/ingress-nginx/deploy/
 
-### Opencore or Enterprise
-
-Make sure you set the value of  `diffgramEdition` in the `values.yaml` to either `opencore`
-or `enterprise`.
-
-If you set the `diffgramEdition` to `enterprise` you will have to provide the GCR credentials 
-Key (Provided by the Diffgram Team). And set the value on `imagePullCredentials.gcrCredentials` value inside the `values.yaml` file.
-### Setting Up the Docker Registry Key (Enterprise Only):
-
-To install the helm chart with the Enterprise Edition of Diffgram you will need to receive a GCR key with the permissions from
-the Diffgram team to fetch our images.
-
-Please Contact us if you want  to get one here:  https://diffgram.com/contact
-
-Once you have your GCR Key please set it in the `values.yaml` file, specifically inside the
-key `imagePullCredentials.gcrCredentials`.
-
-
-```
-imagePullCredentials:
-  # The service account with permissions to pull from the GCR Repository. [Should be Provided by Diffgram Team.]
-  gcrCredentials: <YOUR KEY GOES HERE>
-```
-
-
-
 ### TLS Ceritificates
 #### Using minikube (For local testing) 
 Install Cert Manager
