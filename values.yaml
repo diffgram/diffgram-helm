@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 # The Diffgram Version. Whenever a new update arrives, this will be changed.
-diffgramVersion: 1.4.3
+diffgramVersion: 1.12.0
 
 # Set this to your public domain where you want diffgram to be.
 # This must be a domain name and not a public IP address.
