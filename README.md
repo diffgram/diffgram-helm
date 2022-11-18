@@ -87,7 +87,7 @@ SSL is up to you/your IT team. For debugging the config tools like [SSL Labs](ht
 
 ` cd diffgram-helm && helm dependency build`
 
-``
+`helm install -n diffgram-ns diffgram . --create-namespace`
 
 If you don't change anything on `values.yaml`. You will have the namespace `default` created on your cluster
 
