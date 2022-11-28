@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: diffgram-default
-  name: diffgram-default
+    app: diffgram-eventhandlers
+  name: diffgram-eventhandlers
   namespace: {{ .Release.Namespace }}
 spec:
-  replicas: {{ .Values.defaultService.numReplicas }}
+  replicas: {{ .Values.eventHandlersService.numReplicas }}
   selector:
     matchLabels:
-      app: diffgram-default
+      app: diffgram-eventhandlers
   template:
     metadata:
       labels:
-        app: diffgram-default
+        app: diffgram-eventhandlers
     spec:
       {{ if .Values.nodeGroupLabel }}
       nodeSelector:
@@ -43,9 +43,9 @@ spec:
         command: ['sh', '-c', 'until pg_isready -h postgres-azure-service -p 5432; do echo waiting for database; sleep 2; done;']
         {{ end }}
       containers:
-      - image: diffgram/default:{{ .Values.diffgramVersion }}
+      - image: diffgram/eventhandlers:{{ .Values.diffgramVersion }}
         imagePullPolicy: Always
-        name: diffgram-default
+        name: diffgram-eventhandlers
         ports:
         - containerPort: 8080
       {{ if eq .Values.diffgramSettings.DIFFGRAM_STATIC_STORAGE_PROVIDER "gcp"}}
@@ -56,13 +56,13 @@ spec:
       {{ end }}
         envFrom:
         - configMapRef:
-            name: diffgram-default-configmap
+            name: diffgram-eventhandlers-configmap
         - secretRef:
-            name: diffgram-default-secrets
+            name: diffgram-eventhandlers-secrets
         resources:
           requests:
-            cpu: {{ .Values.defaultService.requests.cpu }}
-            memory: {{ .Values.defaultService.requests.memory }}
+            cpu: {{ .Values.eventHandlersService.requests.cpu }}
+            memory: {{ .Values.eventHandlersService.requests.memory }}
           limits:
-            cpu: {{ .Values.defaultService.limits.cpu }}
-            memory: {{ .Values.defaultService.limits.memory }}
+            cpu: {{ .Values.eventHandlersService.limits.cpu }}
+            memory: {{ .Values.eventHandlersService.limits.memory }}

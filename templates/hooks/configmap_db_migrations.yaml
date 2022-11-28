@@ -7,23 +7,4 @@ metadata:
     "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded
   name: db-migrations-configmap
 data:
-  USERDOMAIN: {{ .Values.diffgramSettings.USERDOMAIN }}
-  DIFFGRAM_SYSTEM_MODE: {{ .Values.diffgramSettings.DIFFGRAM_SYSTEM_MODE }}
-  DIFFGRAM_STATIC_STORAGE_PROVIDER: {{ .Values.diffgramSettings.DIFFGRAM_STATIC_STORAGE_PROVIDER }}
-  DIFFGRAM_S3_BUCKET_NAME: {{ .Values.diffgramSettings.DIFFGRAM_S3_BUCKET_NAME }}
-  ML__DIFFGRAM_S3_BUCKET_NAME: {{ .Values.diffgramSettings.ML__DIFFGRAM_S3_BUCKET_NAME }}
-  GOOGLE_APPLICATION_CREDENTIALS: /etc/gcp/sa_credentials.json # Check the volume in deployment.yaml and service_account_secret.yaml
-  CLOUD_STORAGE_BUCKET:  {{ .Values.diffgramSettings.CLOUD_STORAGE_BUCKET }}
-  ML__CLOUD_STORAGE_BUCKET:  {{ .Values.diffgramSettings.ML__CLOUD_STORAGE_BUCKET }}
-  URL_BASE: {{ .Values.diffgramDomain }}
-  WALRUS_SERVICE_URL_BASE: {{ .Values.diffgramSettings.WALRUS_SERVICE_URL_BASE }}
-  SERVICE_ACCOUNT_FULL_PATH: {{ .Values.diffgramSettings.SERVICE_ACCOUNT_FULL_PATH }}
-  DIFFGRAM_AZURE_CONTAINER_NAME: {{ .Values.diffgramSettings.DIFFGRAM_AZURE_CONTAINER_NAME }}
-  ML__DIFFGRAM_AZURE_CONTAINER_NAME: {{ .Values.diffgramSettings.ML__DIFFGRAM_AZURE_CONTAINER_NAME }}
-  DIFFGRAM_INSTALL_FINGERPRINT: {{ .Values.diffgramSettings.DIFFGRAM_INSTALL_FINGERPRINT }}
-  DIFFGRAM_VERSION_TAG: {{ .Values.diffgramVersion }}
-  DIFFGRAM_HOST_OS: {{ .Values.diffgramSettings.DIFFGRAM_HOST_OS }}
-  DATABASE_CONNECTION_POOL_SIZE: {{ .Values.diffgramSettings.DATABASE_CONNECTION_POOL_SIZE }}
-  PYTHONPATH: /app
-  PROCESS_MEDIA_NUM_VIDEO_THREADS: {{ .Values.diffgramSettings.PROCESS_MEDIA_NUM_VIDEO_THREADS }}
-  PROCESS_MEDIA_NUM_FRAME_THREADS: {{ .Values.diffgramSettings.PROCESS_MEDIA_NUM_FRAME_THREADS }}
+  {{- template "diffgram.settings" . }}

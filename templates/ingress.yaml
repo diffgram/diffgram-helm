@@ -1,60 +1,78 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: diffgram-ingress
   namespace: {{ .Release.Namespace }}
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    ingressclass.kubernetes.io/is-default-class: "true"
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.org/proxy-pass-headers: directory_id
-    {{ if eq .Values.useTls true}}
-    cert-manager.io/issuer: "letsencrypt-prod"
+    {{ if eq .Values.useTls false}}
+    nginx.ingress.kubernetes.io/hsts: "false"
+    hsts: "false"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      add_header Access-Control-Allow-Methods "POST, GET, PUT, PATCH, DELETE, OPTIONS";
+      add_header Access-Control-Allow-Credentials true;
+      add_header Access-Control-Allow-Headers *;
+      add_header Access-Control-Expose-Headers "X-NewRelic-App-Data";
+      proxy_pass_header directory_id;
+      more_clear_headers 'Strict-Transport-Security';
+      if ($scheme = https) {
+        add_header  Strict-Transport-Security "max-age=0;";
+      }
     {{ end }}
-    watch-namespace: {{ .Release.Namespace }}
-#    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-#    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
-    # Limit uploads to 8TB
-    nginx.ingress.kubernetes.io/proxy-body-size: 800000m
+    {{ if eq .Values.useTls true}}
+    cert-manager.io/issuer: {{ .Values.tlsIssuer }}
     nginx.ingress.kubernetes.io/configuration-snippet: |
       proxy_pass_header directory_id;
+    {{ end }}
+    nginx.org/proxy-pass-headers: directory_id
+    watch-namespace: {{ .Release.Namespace }}
+    # Limit uploads to 8TB
+    nginx.ingress.kubernetes.io/proxy-body-size: 800000m
+
 spec:
  {{ if eq .Values.useTls true}}
   tls:
-    - secretName: diffgram-cert-tls
-      hosts:
+    - hosts:
         - {{ .Values.diffgramDomain }}
         - www.{{ .Values.diffgramDomain }}
+        - rabbitmq.{{ .Values.diffgramDomain}}
+      secretName: diffgram-cert-tls-{{ .Values.diffgramDomain }}
   {{ end }}
   rules:
-  - host: {{ .Values.diffgramDomain }}
-    http:
-      paths:
-      # NOTE: this one should come after all other routes. To avoid hijacking requests.
-      - path: /api/walrus(/|$)(.*)
-        backend:
-          serviceName: diffgram-walrus
-          servicePort: 8080
-      - path: /api(/|$)(.*)
-        backend:
-          serviceName: diffgram-default
-          servicePort: 8080
-      - path: /(.*)
-        backend:
-          serviceName: frontend
-          servicePort: 8080
-  - http:
-      paths:
-      # NOTE: this one should come after all other routes. To avoid hijacking requests.
-      - path: /api/walrus(/|$)(.*)
-        backend:
-          serviceName: diffgram-walrus
-          servicePort: 8080
-      - path: /api(/|$)(.*)
-        backend:
-          serviceName: diffgram-default
-          servicePort: 8080
-      - path: /(.*)
-        backend:
-          serviceName: frontend
-          servicePort: 8080
+    - host: rabbitmq.{{ .Values.diffgramDomain}}
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: diffgram-rabbitmq
+                port:
+                  number: 15672
+    - host: {{ .Values.diffgramDomain }}
+      http:
+        paths:
+          - path: /api/walrus(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: diffgram-walrus
+                port:
+                    number: 8080
+          - path: /api(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: diffgram-default
+                port:
+                    number: 8080
+          - path: /(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: frontend
+                port:
+                    number: 8080

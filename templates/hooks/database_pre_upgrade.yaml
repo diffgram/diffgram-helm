@@ -22,10 +22,6 @@ spec:
         helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     spec:
       restartPolicy: Never
-      {{ if eq .Values.diffgramEdition "enterprise"}}
-      imagePullSecrets:
-      - name: diffgramsecret
-      {{ end }}
       {{ if eq .Values.diffgramSettings.DIFFGRAM_STATIC_STORAGE_PROVIDER "gcp"}}
       volumes:
       - name: service-account-credentials-volume-hook
@@ -36,12 +32,7 @@ spec:
             path: sa_credentials.json
       {{ end }}
       containers:
-      {{ if eq .Values.diffgramEdition "enterprise"}}
-      - image: gcr.io/diffgram-enterprise/default:{{ .Values.diffgramVersion }}
-      {{ end }}
-      {{ if eq .Values.diffgramEdition "opencore"}}
-      - image: gcr.io/diffgram-open-core/default:{{ .Values.diffgramVersion }}
-      {{ end }}
+      - image: diffgram/default:{{ .Values.diffgramVersion }}
         imagePullPolicy: Always
         name: pre-upgrade-alembic-hook
        {{ if eq .Values.diffgramSettings.DIFFGRAM_STATIC_STORAGE_PROVIDER "gcp"}}
