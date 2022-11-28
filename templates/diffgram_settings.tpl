@@ -57,4 +57,5 @@
   SMTP_PORT: {{.Values.diffgramSettings.SMTP_PORT}}
   SMTP_USERNAME: {{.Values.diffgramSettings.SMTP_USERNAME}}
   SMTP_FROM_EMAIL: {{.Values.diffgramSettings.SMTP_FROM_EMAIL}}
+  DATABASE_IDLE_SESSION_TRANSACTION_TIMEOUT: {{.Values.diffgramSettings.DATABASE_IDLE_SESSION_TRANSACTION_TIMEOUT}}
 {{- end }}
