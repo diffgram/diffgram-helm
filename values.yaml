@@ -103,6 +103,7 @@ diffgramSettings:
   RABBITMQ_USE_SSL: '"False"'
   SIGNED_URL_CACHE_MINIMUM_SECONDS_VALID: "'18000'" # 5 days default
   SIGNED_URL_CACHE_NEW_OFFSET_SECONDS_VALID: "'21600'" # 6 days default
+  DATABASE_IDLE_SESSION_TRANSACTION_TIMEOUT: "'3600000'" # 1 hour tx timeout for DB
 
   # Email Settings
   EMAIL_VALIDATION: '"False"' # Turns on email verification for new accounts.
