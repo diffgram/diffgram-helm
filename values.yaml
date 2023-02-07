@@ -122,6 +122,9 @@ diffgramSettings:
   OAUTH2_PROVIDER_PUBLIC_KEY: none
   DISABLE_SELF_REGISTRATION: '"False"'
 
+  # Project Settings
+  ONLY_SUPER_ADMINS_CREATE_PROJECTS: '"False"'
+
   # Cognito-specific Settings
   COGNITO_LOGIN_URL: '"False"'
 
