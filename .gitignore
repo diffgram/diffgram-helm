@@ -1,6 +1,5 @@
 
 .idea/
-.charts/
 values_testing.yaml
 values_testing_*
 values_production*
