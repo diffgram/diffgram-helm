@@ -1,0 +1,51 @@
+apiVersion: v1
+entries:
+  diffgram:
+  - apiVersion: v2
+    appVersion: 1.21.0
+    created: "2023-05-15T10:02:53.214955818-06:00"
+    dependencies:
+    - condition: useRabbitMq
+      name: rabbitmq
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.2.2
+    description: A Helm for Diffgram
+    digest: 20c73be50b6651c61082f3a4dee03c4f4e08e89f0690f50205c173fcc0cfc852
+    name: diffgram
+    type: application
+    urls:
+    - diffgram-1.7.0.tgz
+    version: 1.7.0
+  rabbitmq:
+  - annotations:
+      category: Infrastructure
+    apiVersion: v2
+    appVersion: 3.9.18
+    created: "2023-05-15T10:02:53.218459468-06:00"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    description: RabbitMQ is an open source general-purpose message broker that is
+      designed for consistent, highly-available messaging scenarios (both synchronous
+      and asynchronous).
+    digest: 1fe6d8bdf4b525207f28dff401217343bd794302475563219304cbe75f6e9275
+    home: https://github.com/bitnami/charts/tree/master/bitnami/rabbitmq
+    icon: https://bitnami.com/assets/stacks/rabbitmq/img/rabbitmq-stack-220x234.png
+    keywords:
+    - rabbitmq
+    - message queue
+    - AMQP
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    name: rabbitmq
+    sources:
+    - https://github.com/bitnami/bitnami-docker-rabbitmq
+    - https://www.rabbitmq.com
+    urls:
+    - rabbitmq-9.1.4.tgz
+    version: 9.1.4
+generated: "2023-05-15T10:02:53.207697291-06:00"
