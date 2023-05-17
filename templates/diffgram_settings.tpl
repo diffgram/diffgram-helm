@@ -52,7 +52,6 @@
   KEY_CLOAK_MASTER_USER: {{.Values.diffgramSettings.KEY_CLOAK_MASTER_USER}}
   KEY_CLOAK_DIFFGRAM_USER: {{.Values.diffgramSettings.KEY_CLOAK_DIFFGRAM_USER}}
   KEYCLOAK_REALM: {{.Values.diffgramSettings.KEYCLOAK_REALM}}
-  KEYCLOAK_REALM: {{.Values.diffgramSettings.KEYCLOAK_REALM}}
   SMTP_HOST: {{.Values.diffgramSettings.SMTP_HOST}}
   SMTP_PORT: {{.Values.diffgramSettings.SMTP_PORT}}
   SMTP_USERNAME: {{.Values.diffgramSettings.SMTP_USERNAME}}
