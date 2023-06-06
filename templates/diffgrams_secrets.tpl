@@ -16,7 +16,7 @@
   DATABASE_URL:  "postgresql+psycopg2://{{ .Values.dbSettings.dbUser }}:{{ .Values.dbSettings.dbPassword }}@postgres-rds-service/{{ .Values.dbSettings.dbName }}"
   {{ end }}
   {{ if eq .Values.dbSettings.dbProvider "azure"}}
-  DATABASE_URL:  "postgresql+psycopg2://{{ .Values.dbSettings.dbUser }}:{{ .Values.dbSettings.dbPassword }}@postgres-azure-service/{{ .Values.dbSettings.dbName }}"
+  DATABASE_URL:  "postgresql+psycopg2://{{ .Values.dbSettings.dbUser }}:{{ .Values.dbSettings.dbPassword }}@{{ .Values.dbSettings.dbName }}"
   {{ end }}
   USER_PASSWORDS_SECRET:  {{ .Values.diffgramSecrets.USER_PASSWORDS_SECRET }}
   DIFFGRAM_AZURE_CONNECTION_STRING:  {{ .Values.diffgramSecrets.DIFFGRAM_AZURE_CONNECTION_STRING }}
