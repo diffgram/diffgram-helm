@@ -47,7 +47,7 @@ spec:
         - secretRef:
             name:  db-migrations-secret
         # The actual migrations command
-        command: ["sh","-c", "cd shared; export PYTHONPATH=/app; pip install sqlalchemy-utils==0.41.1;python /app/play_and_scripts/scripts/create_database.py; alembic upgrade head"]
+        command: ["sh","-c", "cd shared; export PYTHONPATH=/app; pip install sqlalchemy-utils==0.41.1; alembic upgrade head"]
 
       {{ if .Values.nodeGroupLabel }}
       nodeSelector:
