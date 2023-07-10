@@ -17,7 +17,7 @@ useCertManager: true
 useTls: true
 tlsIssuer: letsencrypt-prod # One of: "issuer-local", "letsencrypt-staging", or "letsencrypt-prod"
 localCaSecretName: my-local-ca-key-pair
-issuerEmail: pablo.estrada@diffgram.com
+issuerEmail: anthony@diffgram.com
 
 dbSettings:
   # Specify How the DB Service should be created
