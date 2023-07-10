@@ -38,7 +38,6 @@ spec:
     - hosts:
         - {{ .Values.diffgramDomain }}
         - www.{{ .Values.diffgramDomain }}
-        - rabbitmq.{{ .Values.diffgramDomain}}
       secretName: diffgram-cert-tls-{{ .Values.diffgramDomain }}
   {{ end }}
   rules:
